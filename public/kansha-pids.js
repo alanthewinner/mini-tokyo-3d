@@ -1,131 +1,162 @@
 /*
- * 看車 PIDS — 車內旅客資訊顯示器（原創設計，行為參考日本車內 LCD）
- * kanshaPIDS(map, container) -> {update(train|null, visible)}
+ * 看車 PIDS — 車內旅客資訊顯示器
+ * 版面依日本地下鐵車內 LCD 的資訊配置：上方固定「種別＋行先／狀態／站號圈／大站名」，
+ * 下方輪播「停車站路線條（直書站名、站號、剩餘分鐘、各站轉乘）」與「のりかえ」頁。
+ * 不含任何鐵道公司 logo；配色取自路線色。
  *
- * 頁面狀態機：
- *   行駛中、距到站 > 40 秒  -> 「次は」日/英/中/韓 輪播 -> 停車站路線圖 -> 轉乘資訊
- *   行駛中、距到站 ≤ 40 秒  -> 立刻跳「まもなく」(閃爍) 四語輪播 -> 轉乘資訊
- *   停站中                  -> 「ただいま」四語輪播 -> 停車站路線圖
- * 用到 mt3d.Map 內部欄位：clock、stationGroupLookup、train.timetable 等。
+ * kanshaPIDS(map, container) -> {update(train|null, visible)}
+ * 站號、平假名、路線代號來自 station-meta.json（npm run station-meta 產生），沒有也能跑，只是不顯示。
  */
 (function () {
-    const LANGS = ['ja', 'en', 'zh-Hant', 'ko'];
-    const T = {
-        next: {ja: '次は', en: 'Next', 'zh-Hant': '下一站', ko: '다음 역'},
-        soon: {ja: 'まもなく', en: 'Arriving at', 'zh-Hant': '即將抵達', ko: '곧 도착'},
-        now: {ja: 'ただいま', en: 'Now stopping at', 'zh-Hant': '本站', ko: '이번 역'},
-        transfer: {ja: '乗換えのご案内', en: 'Transfers', 'zh-Hant': '轉乘資訊', ko: '환승 안내'},
-        stops: {ja: '停車駅', en: 'Stops', 'zh-Hant': '停靠站', ko: '정차역'},
-        terminal: {ja: '終点', en: 'Terminal', 'zh-Hant': '終點', ko: '종점'},
-        bound: {ja: s => `${s} 行`, en: s => `for ${s}`, 'zh-Hant': s => `開往 ${s}`, ko: s => `${s} 행`},
+    const L = {
+        next: {ja: 'つぎは', kana: 'つぎは', en: 'Next', ko: '다음 역', 'zh-Hant': '下一站'},
+        soon: {ja: 'まもなく', kana: 'まもなく', en: 'Soon', ko: '곧 도착', 'zh-Hant': '即將抵達'},
+        now: {ja: 'ただいま', kana: 'ただいま', en: 'Now at', ko: '이번 역', 'zh-Hant': '本站'},
+        last: {ja: '終点', kana: 'しゅうてん', en: 'Last Stop', ko: '종점', 'zh-Hant': '終點'},
+        bound: {
+            ja: s => `${s} ゆき`, kana: s => `${s} ゆき`, en: s => `For ${s}`,
+            ko: s => `${s} 행`, 'zh-Hant': s => `開往 ${s}`
+        },
         delay: {
-            ja: n => `この列車は約${n}分遅れて運転しています`,
-            en: n => `This train is running about ${n} min behind schedule`,
-            'zh-Hant': n => `本列車目前延誤約 ${n} 分鐘`,
-            ko: n => `이 열차는 약 ${n}분 지연 운행 중입니다`
+            ja: n => `この電車は約${n}分遅れて運転しています`,
+            en: n => `This train is running about ${n} min late`,
+            ko: n => `이 열차는 약 ${n}분 지연 운행 중입니다`,
+            'zh-Hant': n => `本列車目前延誤約 ${n} 分鐘`
         }
     };
+    // 上方大站名的語言輪播（kana 沒資料時自動跳過）
+    const HEAD = [
+        {lang: 'ja', dur: 4500}, {lang: 'kana', dur: 3500}, {lang: 'en', dur: 4500},
+        {lang: 'ko', dur: 3000}, {lang: 'zh-Hant', dur: 3000}
+    ];
 
     const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Sans+TC:wght@500;700;900&family=Noto+Sans+KR:wght@500;700;900&display=swap');
-.kp{--c:#4db6ac;position:absolute;right:16px;bottom:28px;width:min(560px,46vw);aspect-ratio:16/9;z-index:6;
-  background:#0d1117;border-radius:10px;padding:8px;box-sizing:border-box;box-shadow:0 8px 28px rgba(0,0,0,.45);
-  display:none;font-family:"Noto Sans JP","Noto Sans TC","Noto Sans KR",system-ui,sans-serif;container-type:inline-size}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Noto+Sans+KR:wght@700;900&family=Noto+Sans+TC:wght@700;900&display=swap');
+.kp{--c:#00a37a;position:absolute;right:16px;bottom:28px;width:min(680px,52vw);aspect-ratio:16/9;z-index:6;
+  background:#e9e3d6;border-radius:12px;padding:1.4cqw;box-sizing:border-box;box-shadow:0 8px 28px rgba(0,0,0,.45);
+  display:none;container-type:inline-size;font-family:"Noto Sans JP","Noto Sans KR","Noto Sans TC",system-ui,sans-serif;color:#222}
 .kp.show{display:block;animation:kp-on .45s ease-out}
 @keyframes kp-on{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
-.kp-scr{position:relative;width:100%;height:100%;background:#fff;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
-.kp-head{height:17%;display:flex;align-items:center;background:linear-gradient(#2a3442,#18202b);color:#fff;gap:2.2cqw;padding-right:2.5cqw}
-.kp-head .bar{width:2.2cqw;height:100%;background:var(--c)}
-.kp-type{font-weight:900;font-size:3.6cqw;padding:.4cqw 1.6cqw;border-radius:.8cqw;background:var(--c);color:#fff;white-space:nowrap}
-.kp-dest{font-weight:700;font-size:4.3cqw;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kp-dest span,.kp-type span{display:inline-block;animation:kp-flip .5s ease-out}
-@keyframes kp-flip{from{opacity:0;transform:translateY(60%)}to{opacity:1;transform:none}}
-.kp-clock{font:700 3.6cqw/1 "Noto Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;opacity:.9}
-.kp-body{position:relative;flex:1;overflow:hidden}
-.kp-page{position:absolute;inset:0;animation:kp-in .4s cubic-bezier(.2,.8,.2,1)}
-@keyframes kp-in{from{transform:translateX(100%)}to{transform:none}}
-.kp-ticker{height:9%;background:#c62828;color:#fff;font-weight:700;font-size:2.8cqw;display:none;align-items:center;overflow:hidden;white-space:nowrap}
+.kp-scr{position:relative;width:100%;height:100%;background:#f3f4f2;border:.5cqw solid #1d1d1d;border-radius:.6cqw;overflow:hidden;box-sizing:border-box}
+/* 上方 */
+.kp-head{position:absolute;left:0;right:0;top:0;height:19.5cqw}
+.kp-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:.6cqw;background:var(--c)}
+.kp-tl{position:absolute;left:2cqw;top:1.4cqw;display:flex;align-items:center;gap:1.4cqw;white-space:nowrap}
+.kp-type{background:#2b4a9b;color:#fff;font-weight:700;font-size:3.1cqw;padding:.1cqw 1.2cqw;border-radius:.6cqw}
+.kp-type.ex{background:#d32f2f}.kp-type.rp{background:#ef6c00}
+.kp-dest{font-weight:700;font-size:3.3cqw}
+.kp-label{position:absolute;left:2cqw;bottom:2cqw;font-weight:900;font-size:3.6cqw;line-height:1.1}
+.kp-label.en{font-family:"Noto Sans",system-ui,sans-serif}
+.kp-label.blink{animation:kp-blink 1.2s steps(1) infinite}
+@keyframes kp-blink{60%{opacity:.15}}
+.kp-badge{position:absolute;left:23cqw;top:6.4cqw;width:11.6cqw;height:11.6cqw;border-radius:50%;background:#fff;
+  border:1.3cqw solid var(--c);box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font:700 3cqw/1.05 "Noto Sans",system-ui,sans-serif;color:#222}
+.kp-badge b{font-size:3.5cqw}
+.kp-badge.none{display:none}
+.kp-name{position:absolute;left:36cqw;right:2cqw;top:3.2cqw;height:14cqw;display:flex;align-items:center;justify-content:center}
+.kp-name span{font-weight:900;font-size:9.4cqw;white-space:nowrap;letter-spacing:.04em;animation:kp-up .45s cubic-bezier(.2,.8,.2,1)}
+.kp-name span.en{font-family:"Noto Sans",system-ui,sans-serif;font-weight:700;letter-spacing:0}
+.kp-name span.l{font-size:7.2cqw}.kp-name span.xl{font-size:5.4cqw}
+.kp-tl span,.kp-label span{display:inline-block;animation:kp-up .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes kp-up{from{opacity:0;transform:translateY(40%)}to{opacity:1;transform:none}}
+/* 下方 */
+.kp-body{position:absolute;left:0;right:0;top:19.5cqw;bottom:0;overflow:hidden}
+.kp-page{position:absolute;inset:0;animation:kp-in .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes kp-in{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+.kp-foot{position:absolute;left:2cqw;bottom:.8cqw;font-weight:700;font-size:1.3cqw;line-height:1.3;color:#555}
+.kp-ticker{position:absolute;left:0;right:0;bottom:0;height:3.6cqw;background:#c62828;color:#fff;font-weight:700;font-size:2cqw;
+  display:none;align-items:center;overflow:hidden;white-space:nowrap;z-index:3}
 .kp-ticker.on{display:flex}
-.kp-ticker span{display:inline-block;padding-left:100%;animation:kp-scroll 14s linear infinite}
+.kp-ticker span{display:inline-block;padding-left:100%;animation:kp-scroll 16s linear infinite}
 @keyframes kp-scroll{to{transform:translateX(-100%)}}
-/* 站名頁 */
-.kp-name{display:flex;flex-direction:column;justify-content:center;padding:0 5cqw 9cqw}
-.kp-label{font-weight:900;font-size:5cqw;color:var(--c);animation:kp-fade .4s .1s both}
-.kp-label.blink{animation:kp-blink 1s steps(1) infinite}
-@keyframes kp-blink{50%{opacity:0}}
-@keyframes kp-fade{from{opacity:0;transform:translateX(-3cqw)}to{opacity:1;transform:none}}
-.kp-big{font-weight:900;font-size:13cqw;line-height:1.15;color:#111;white-space:nowrap;animation:kp-wipe .7s .15s cubic-bezier(.3,.7,.2,1) both}
-.kp-big.l{font-size:9cqw}.kp-big.xl{font-size:6.6cqw}
-@keyframes kp-wipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
-.kp-sub{font-weight:700;font-size:3.6cqw;color:#555;animation:kp-fade .4s .5s both}
-.kp-eta{position:absolute;right:5cqw;top:5cqw;font-weight:700;font-size:3.4cqw;color:#333;background:#f1f3f5;border-radius:1cqw;padding:.6cqw 1.6cqw}
-.kp-mini{position:absolute;left:5cqw;right:5cqw;bottom:3.5cqw;height:7cqw}
-.kp-mini .ln{position:absolute;left:0;right:0;top:1.3cqw;height:1.4cqw;background:var(--c);border-radius:1cqw}
-.kp-mini .s{position:absolute;top:0;transform:translateX(-50%);text-align:center;font-weight:700;font-size:2.3cqw;color:#333;white-space:nowrap}
-.kp-mini .s i{display:block;width:4cqw;height:4cqw;margin:0 auto .4cqw;border-radius:50%;background:#fff;border:.7cqw solid var(--c);box-sizing:border-box}
-.kp-mini .s.t i{background:var(--c);animation:kp-blink 1s steps(1) infinite}
-/* 停車站路線圖 */
-.kp-stops{padding:2.5cqw 4cqw}
-.kp-stops h4{margin:0;font-weight:900;font-size:3.4cqw;color:#333}
-.kp-rail{position:absolute;left:4cqw;right:4cqw;top:33cqw;height:2.4cqw;background:var(--c);border-radius:2cqw}
-.kp-rail.pass{background:#c4c8cd}
-.kp-col{position:absolute;top:8cqw;width:9cqw;height:36cqw;transform:translateX(-50%);animation:kp-rise .4s both}
-@keyframes kp-rise{from{opacity:0;transform:translate(-50%,3cqw)}to{opacity:1;transform:translateX(-50%)}}
-.kp-col .v{writing-mode:vertical-rl;text-orientation:upright;font-weight:900;font-size:3.5cqw;letter-spacing:.1em;color:#111;
-  position:absolute;top:0;left:50%;transform:translateX(-50%);height:22cqw;overflow:hidden;white-space:nowrap}
-.kp-col .v.sm{font-size:2.7cqw;letter-spacing:0}
-.kp-col.past .v{color:#aaa}
-.kp-col .d{position:absolute;left:50%;top:23cqw;margin-left:-2.2cqw;width:4.4cqw;height:4.4cqw;border-radius:50%;background:#fff;border:.8cqw solid var(--c);box-sizing:border-box;z-index:1}
-.kp-col.past .d{border-color:#c4c8cd}
-.kp-col.t .d{background:var(--c)}
-.kp-col.end .d{border-radius:.6cqw}
-.kp-col .m{position:absolute;left:50%;transform:translateX(-50%);top:29cqw;font:700 2.6cqw "Noto Sans",system-ui,sans-serif;color:#333;white-space:nowrap}
-.kp-col .m b{font-size:3.6cqw}
-.kp-arrow{position:absolute;top:31.2cqw;width:0;height:0;border-top:3cqw solid transparent;border-bottom:3cqw solid transparent;
-  border-left:4.4cqw solid #e53935;transform:translateX(-50%);animation:kp-nudge 1s ease-in-out infinite;z-index:2}
-@keyframes kp-nudge{0%,100%{margin-left:-1.2cqw;opacity:1}50%{margin-left:1.2cqw;opacity:.35}}
-/* 轉乘 */
-.kp-xf{padding:3cqw 5cqw}
-.kp-xf h4{margin:0 0 .6cqw;font-weight:900;font-size:3.4cqw;color:#333}
-.kp-xf .at{font-weight:900;font-size:6.4cqw;color:#111;margin-bottom:2cqw}
-.kp-xf .at small{font-size:3.2cqw;color:#666;margin-left:1.4cqw}
-.kp-xf ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:1.6cqw 3cqw}
-.kp-xf li{display:flex;align-items:center;gap:1.6cqw;font-weight:700;font-size:3.4cqw;color:#111;animation:kp-fade .35s both}
-.kp-xf li i{width:2.2cqw;height:5.6cqw;border-radius:1cqw;flex:none}
-.kp-xf li small{display:block;font-size:2.3cqw;color:#666;font-weight:500}
+/* 路線條 */
+.kp-c{position:absolute;top:0;bottom:0;transform:translateX(-50%);width:11cqw}
+.kp-v{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% - 13cqw);writing-mode:vertical-rl;text-orientation:upright;
+  font-weight:700;font-size:2.9cqw;letter-spacing:.06em;white-space:nowrap;line-height:1}
+.kp-v.sm{font-size:2.25cqw;letter-spacing:0}
+.kp-v.xs{font-size:1.8cqw;letter-spacing:0}
+.kp-code{position:absolute;left:0;right:0;top:13.2cqw;text-align:center;font:700 1.8cqw/1 "Noto Sans",system-ui,sans-serif}
+.kp-band{position:absolute;top:15.6cqw;height:4.2cqw}
+.kp-band.g{left:0;background:#4b5560}
+.kp-band.c{right:5cqw;background:var(--c)}
+.kp-tip{position:absolute;right:2cqw;top:15.1cqw;width:0;height:0;border-top:2.6cqw solid transparent;border-bottom:2.6cqw solid transparent;border-left:3cqw solid var(--c)}
+.kp-fun{position:absolute;right:5.4cqw;top:16.5cqw;color:#fff;font-weight:700;font-size:1.9cqw;z-index:1}
+.kp-min{position:absolute;left:50%;top:15.85cqw;margin-left:-1.85cqw;width:3.7cqw;height:3.7cqw;border-radius:50%;background:#fff;border:.35cqw solid #333;
+  box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:700 1.95cqw/1 "Noto Sans",system-ui,sans-serif;z-index:1}
+.kp-chev{position:absolute;top:15.1cqw;width:3.6cqw;height:5.2cqw;margin-left:-1.8cqw;background:#e53935;z-index:2;
+  clip-path:polygon(0 0,45% 0,100% 50%,45% 100%,0 100%,55% 50%);animation:kp-nudge 1.2s ease-in-out infinite}
+@keyframes kp-nudge{0%,100%{transform:translateX(-.5cqw)}50%{transform:translateX(.6cqw)}}
+.kp-xs{position:absolute;left:50%;transform:translateX(-50%);top:20.6cqw;width:10.6cqw;font-weight:700;font-size:1.4cqw;line-height:1.3}
+.kp-xs div{display:flex;align-items:center;gap:.4cqw;white-space:nowrap}
+.kp-xs div em{font-style:normal;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.kp-dot{flex:none;width:1.55cqw;height:1.55cqw;border-radius:50%;border:.3cqw solid;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;
+  font:700 .95cqw/1 "Noto Sans",system-ui,sans-serif;background:#fff}
+.kp-dot.sq{border-radius:.25cqw;color:#fff}
+/* のりかえ */
+.kp-xfh{position:absolute;left:0;right:0;top:0;height:5cqw;background:#e2e5e7;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:2.8cqw}
+.kp-xfl{position:absolute;left:4cqw;right:3cqw;top:6.6cqw;bottom:2cqw;display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:1.2cqw 3cqw}
+.kp-xfl>div{display:flex;align-items:center;gap:1.4cqw;animation:kp-up .4s both}
+.kp-xfl .kp-dot{width:5.6cqw;height:5.6cqw;border-width:.9cqw;font-size:2.4cqw}
+.kp-xfl .kp-dot.sq{border-radius:.8cqw}
+.kp-xfl b{display:block;font-size:3cqw;line-height:1.15;white-space:nowrap}
+.kp-xfl small{display:block;font:500 2cqw/1.2 "Noto Sans",system-ui,sans-serif;white-space:nowrap}
+.kp-xfl.dense .kp-dot{width:4.2cqw;height:4.2cqw;font-size:1.8cqw}.kp-xfl.dense b{font-size:2.3cqw}.kp-xfl.dense small{font-size:1.5cqw}
 @media (max-width:600px){.kp{left:8px;right:8px;bottom:12px;width:auto}}`;
 
-    const col = c => (Array.isArray(c) ? c[0] : c) || '#4db6ac';
-    const tt = (obj, lang) => (obj && obj.title && (obj.title[lang] || obj.title.en || obj.title.ja)) || '';
-    const esc = s => String(s).replace(/[&<>"]/g, ch => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[ch]));
-    const sizeCls = s => (s.length > 9 ? ' xl' : s.length > 5 ? ' l' : '');
+    const colorOf = c => (Array.isArray(c) ? c[0] : c) || '#00a37a';
+    const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[ch]));
 
     window.kanshaPIDS = function (map, container) {
         const style = document.createElement('style');
         style.textContent = CSS;
         document.head.appendChild(style);
 
+        let meta = {stations: {}, lines: {}};
+        fetch('station-meta.json').then(r => (r.ok ? r.json() : null)).then(j => {
+            if (j) {
+                meta = j;
+                seqKey = '';
+            }
+        }).catch(() => {});
+
         const root = document.createElement('div');
         root.className = 'kp';
-        root.innerHTML = '<div class="kp-scr"><div class="kp-head"><div class="bar"></div><div class="kp-type"></div>' +
-            '<div class="kp-dest"></div><div class="kp-clock"></div></div><div class="kp-body"></div>' +
+        root.innerHTML = '<div class="kp-scr"><div class="kp-head"><div class="kp-tl"></div><div class="kp-label"></div>' +
+            '<div class="kp-badge none"></div><div class="kp-name"></div></div><div class="kp-body"></div>' +
             '<div class="kp-ticker"><span></span></div></div>';
         container.appendChild(root);
         const $ = s => root.querySelector(s);
-        const body = $('.kp-body'), typeEl = $('.kp-type'), destEl = $('.kp-dest'),
-            clockEl = $('.kp-clock'), ticker = $('.kp-ticker');
+        const tl = $('.kp-tl'), label = $('.kp-label'), badge = $('.kp-badge'), nameEl = $('.kp-name'),
+            body = $('.kp-body'), ticker = $('.kp-ticker');
 
-        let train = null, visible = false, seq = [], page = 0, pageStart = 0, seqKey = '', headKey = '', tickKey = '';
+        let train = null, visible = false;
+        let seqKey = '', st = null, pages = [], page = 0, pageT = 0, heads = [], head = 0, headT = 0, tickKey = '';
 
-        const nowOff = () => (map.clock ? map.clock.getTimeOffset() : 0);
+        const sMeta = s => (s && meta.stations[s.id]) || {};
+        const now = () => (map.clock ? map.clock.getTimeOffset() : 0);
 
-        function stopList(t) {
-            const tb = t.timetable;
+        // 各語言站名：kana 用 ODPT 的 ja-Hrkt
+        function sName(s, lang) {
+            if (!s) return '';
+            if (lang === 'kana') return sMeta(s).kana || '';
+            const t = s.title || {};
+            return t[lang] || t.en || t.ja || '';
+        }
+        const tTitle = (o, lang) => (o && o.title ? o.title[lang === 'kana' ? 'ja' : lang] || o.title.en || o.title.ja || '' : '');
+
+        function splitCode(code) {
+            const m = /^([A-Za-z]+)-?(\d+)$/.exec(code || '');
+            return m ? {line: m[1].toUpperCase(), num: m[2]} : null;
+        }
+
+        function stopList() {
+            const tb = train.timetable;
             if (tb && tb.stations && tb.stations.length) {
                 return {stations: tb.stations, arr: tb.arrivalTimes || [], dep: tb.departureTimes || []};
             }
-            const r = t.r, stations = r.stations.slice();
-            if (t.d && r.descending && t.d.id === r.descending.id) stations.reverse();
+            const r = train.r, stations = r.stations.slice();
+            if (train.d && r.descending && train.d.id === r.descending.id) stations.reverse();
             return {stations, arr: [], dep: []};
         }
 
@@ -138,136 +169,150 @@
                 seen.add(r.id);
                 out.push(r);
             }
-            return out.slice(0, 8);
+            return out;
         }
 
-        function state() {
-            const t = train, delay = t.delay || 0;
-            if (t.standing || !t.arrivalStation) {
-                return {phase: 'now', target: t.departureStation};
+        function dot(r) {
+            const c = colorOf(r.color), code = meta.lines[r.id] && meta.lines[r.id].code;
+            return code ?
+                `<span class="kp-dot" style="border-color:${c}">${esc(code.slice(0, 2))}</span>` :
+                `<span class="kp-dot sq" style="border-color:${c};background:${c}"></span>`;
+        }
+
+        function computeState() {
+            const delay = train.delay || 0;
+            const {stations} = stopList();
+            if (train.standing || !train.arrivalStation) {
+                return {phase: 'now', target: train.departureStation, last: stations[stations.length - 1] === train.departureStation};
             }
-            const eta = t.arrivalTime !== undefined ? (t.arrivalTime + delay - nowOff()) / 1000 : Infinity;
-            return {phase: eta <= 40 ? 'soon' : 'next', target: t.arrivalStation, eta};
+            const eta = train.arrivalTime !== undefined ? (train.arrivalTime + delay - now()) / 1000 : Infinity;
+            return {
+                phase: eta <= 40 ? 'soon' : 'next', target: train.arrivalStation, eta,
+                last: stations[stations.length - 1] === train.arrivalStation
+            };
         }
 
-        function buildSeq(st) {
-            const names = LANGS.map(lang => ({kind: 'name', lang, dur: 3600}));
-            const xf = transfers(st.target).length ? [{kind: 'xf', dur: 6500}] : [];
-            if (st.phase === 'next') return names.concat([{kind: 'stops', dur: 9000}], xf);
-            if (st.phase === 'soon') return names.concat(xf);
-            return names.concat([{kind: 'stops', dur: 8000}]);
+        // ---- 上方 ----
+        function renderHead() {
+            const h = heads[head], lang = h.lang, t = st.target;
+            const typeTxt = tTitle(train.y, lang) || tTitle(train.r, lang);
+            const typeJa = tTitle(train.y, 'ja');
+            const typeCls = /特|急|Express/.test(typeJa) ? ' ex' : /快速/.test(typeJa) ? ' rp' : '';
+            const ds = train.ds && train.ds[0];
+            const destName = ds ? (lang === 'kana' ? sMeta(ds).kana || sName(ds, 'ja') : sName(ds, lang)) : '';
+            const dest = ds ? L.bound[lang](destName) : tTitle(train.d, lang);
+            tl.innerHTML = `<span class="kp-type${typeCls}">${esc(typeTxt)}</span><span class="kp-dest">${esc(dest)}</span>`;
+
+            let lab = L[st.phase][lang];
+            if (st.last && st.phase !== 'now') lab += `<br>${L.last[lang]}`;
+            label.className = `kp-label${lang === 'en' ? ' en' : ''}${st.phase === 'soon' ? ' blink' : ''}`;
+            label.innerHTML = `<span>${lab}</span>`;
+
+            const nm = sName(t, lang);
+            const len = lang === 'en' ? nm.length / 2 : nm.length;
+            const cls = (lang === 'en' ? 'en' : '') + (len > 8 ? ' xl' : len > 5 ? ' l' : '');
+            nameEl.innerHTML = `<span class="${cls}">${esc(nm)}</span>`;
         }
 
-        function namePage(p, st) {
-            const s = st.target, lang = p.lang;
-            const big = tt(s, lang), sub = lang === 'ja' ? tt(s, 'en') : tt(s, 'ja');
-            const label = T[st.phase][lang];
-            let eta = '';
-            if (st.phase === 'next' && isFinite(st.eta)) {
-                const m = Math.max(1, Math.ceil(st.eta / 60));
-                eta = `<div class="kp-eta">${lang === 'en' ? `${m} min` : lang === 'ko' ? `약 ${m}분` : `約${m}分`}</div>`;
-            }
-            // 迷你路線：目標站前一站 + 目標站 + 後面兩站
-            const {stations} = stopList(train);
-            const ti = stations.indexOf(s);
-            let mini = '';
-            if (ti >= 0) {
-                const view = stations.slice(Math.max(0, ti - 1), ti + 3);
-                mini = '<div class="kp-mini"><div class="ln"></div>' + view.map((v, i) =>
-                    `<div class="s${v === s ? ' t' : ''}" style="left:${((i + 0.5) / view.length) * 100}%"><i></i>${esc(tt(v, lang))}</div>`).join('') + '</div>';
-            }
-            return `<div class="kp-page kp-name">${eta}<div class="kp-label${st.phase === 'soon' ? ' blink' : ''}">${esc(label)}</div>` +
-                `<div class="kp-big${sizeCls(big)}">${esc(big)}</div><div class="kp-sub">${esc(sub)}</div>${mini}</div>`;
+        function renderBadge() {
+            const c = splitCode(sMeta(st.target).code);
+            badge.className = `kp-badge${c ? '' : ' none'}`;
+            badge.innerHTML = c ? `${esc(c.line)}<b>${esc(c.num)}</b>` : '';
         }
 
-        function stopsPage(st) {
-            const {stations, arr, dep} = stopList(train);
+        // ---- 路線條 ----
+        function routePage() {
+            const {stations, arr, dep} = stopList();
             let idx = stations.indexOf(train.departureStation);
             if (idx < 0) idx = 0;
             const standing = st.phase === 'now';
-            const from = idx, view = stations.slice(from, from + 8), n = view.length;
-            const last = from + n - 1 === stations.length - 1;
-            const x = i => 6 + (i / Math.max(1, n - 1)) * 88;
-            const delay = train.delay || 0, now = nowOff();
-            const arrowX = standing ? x(0) : (x(0) + x(Math.min(1, n - 1))) / 2;
-            let h = `<div class="kp-page kp-stops"><h4>${T.stops.ja} <span style="color:#888;font-weight:700">${T.stops.en}</span></h4>`;
-            h += `<div class="kp-rail pass" style="right:${100 - arrowX}%"></div><div class="kp-rail" style="left:${arrowX}%"></div>`;
+            const view = stations.slice(idx, idx + 8), n = view.length;
+            const colW = 88 / 8;
+            const x = i => 6 + colW * (i + 0.5) - colW / 2 + 3; // 每欄中心（%）
+            const chevX = standing ? x(0) : (x(0) + x(Math.min(1, n - 1))) / 2;
+            const delay = train.delay || 0, t0 = now();
+            let h = `<div class="kp-page"><div class="kp-band g" style="width:${chevX}%"></div>` +
+                `<div class="kp-band c" style="left:${chevX}%"></div><div class="kp-tip"></div><div class="kp-fun">分</div>` +
+                `<div class="kp-chev" style="left:${chevX}%"></div>`;
             view.forEach((s, i) => {
-                const gi = from + i, past = !standing && i === 0;
+                const gi = idx + i, ja = sName(s, 'ja');
+                const code = sMeta(s).code, sc = splitCode(code);
                 const tm = arr[gi] !== undefined ? arr[gi] : dep[gi];
-                let m = '';
-                if (i > 0 && tm !== undefined) {
-                    m = `<b>${Math.max(1, Math.ceil((tm + delay - now) / 60000))}</b>分`;
-                } else if (i === n - 1 && last) {
-                    m = T.terminal.ja;
-                }
-                const cls = (past ? ' past' : '') + (s === st.target ? ' t' : '') + (i === n - 1 && last ? ' end' : '');
-                h += `<div class="kp-col${cls}" style="left:${x(i)}%;animation-delay:${i * 60}ms"><div class="v${tt(s, 'ja').length > 4 ? ' sm' : ''}">${esc(tt(s, 'ja'))}</div><div class="d"></div><div class="m">${m}</div></div>`;
+                const min = i > 0 && tm !== undefined ? Math.max(1, Math.ceil((tm + delay - t0) / 60000)) : null;
+                const xs = transfers(s).slice(0, 4);
+                h += `<div class="kp-c" style="left:${x(i)}%">` +
+                    `<div class="kp-v${ja.length > 6 ? ' xs' : ja.length > 4 ? ' sm' : ''}">${esc(ja)}</div>` +
+                    (code ? `<div class="kp-code">${esc(sc ? `${sc.line}-${sc.num}` : code)}</div>` : '') +
+                    (min !== null ? `<div class="kp-min">${min}</div>` : '') +
+                    (xs.length ? `<div class="kp-xs">${xs.map(r => `<div>${dot(r)}<em>${esc(tTitle(r, 'ja'))}</em></div>`).join('')}</div>` : '') +
+                    '</div>';
             });
-            h += `<div class="kp-arrow" style="left:${arrowX}%"></div></div>`;
-            return h;
+            h += delayMin() ? '' : '<div class="kp-foot">※運転状況により、時刻が前後する場合があります。</div>';
+            return h + '</div>';
         }
 
-        function xfPage(st) {
-            const list = transfers(st.target);
-            return `<div class="kp-page kp-xf"><h4>${T.transfer.ja}　<span style="color:#888">${T.transfer.en}</span></h4>` +
-                `<div class="at">${esc(tt(st.target, 'ja'))}<small>${esc(tt(st.target, 'en'))}</small></div><ul>` +
-                list.map((r, i) => `<li style="animation-delay:${120 + i * 70}ms"><i style="background:${col(r.color)}"></i>` +
-                    `<span>${esc(tt(r, 'ja'))}<small>${esc(tt(r, 'en'))}</small></span></li>`).join('') + '</ul></div>';
+        // ---- のりかえ ----
+        function transferPage() {
+            const list = transfers(st.target).slice(0, 10);
+            return '<div class="kp-page"><div class="kp-xfh">のりかえ / Transfer</div>' +
+                `<div class="kp-xfl${list.length > 6 ? ' dense' : ''}">` +
+                list.map((r, i) => `<div style="animation-delay:${100 + i * 60}ms">${dot(r)}<span><b>${esc(tTitle(r, 'ja'))}</b>` +
+                    `<small>${esc(tTitle(r, 'en'))}</small></span></div>`).join('') + '</div></div>';
         }
 
-        function render(st) {
-            const p = seq[page];
-            if (!p) return;
-            body.innerHTML = p.kind === 'name' ? namePage(p, st) : p.kind === 'stops' ? stopsPage(st) : xfPage(st);
+        function delayMin() {
+            return Math.floor((train.delay || 0) / 60000);
         }
 
-        function header(now) {
-            const lang = seq[page] && seq[page].lang ? seq[page].lang : LANGS[Math.floor(now / 4000) % LANGS.length];
-            const type = tt(train.y, lang);
-            const destStation = train.ds && train.ds[0];
-            const dest = destStation ? T.bound[lang](tt(destStation, lang)) : tt(train.d, lang);
-            const k = lang + type + dest;
-            if (k !== headKey) {
-                headKey = k;
-                typeEl.innerHTML = `<span>${esc(type || tt(train.r, lang))}</span>`;
-                destEl.innerHTML = `<span>${esc(dest)}</span>`;
+        function renderBody() {
+            const p = pages[page];
+            body.innerHTML = p === 'route' ? routePage() : transferPage();
+        }
+
+        function rebuild(t) {
+            st = computeState();
+            const hasXf = transfers(st.target).length > 0;
+            const hasKana = !!sMeta(st.target).kana;
+            heads = HEAD.filter(h => h.lang !== 'kana' || hasKana);
+            pages = st.phase === 'soon' ? (hasXf ? ['transfer', 'route'] : ['route']) :
+                st.phase === 'next' ? (hasXf ? ['route', 'transfer'] : ['route']) : ['route'];
+            page = head = 0;
+            pageT = headT = t;
+            root.style.setProperty('--c', colorOf((train.v || train.r).color));
+            renderHead();
+            renderBadge();
+            renderBody();
+        }
+
+        function tick() {
+            if (!visible || !train) return;
+            const t = performance.now();
+            const s = computeState();
+            const key = `${train.id}|${s.phase}|${s.target && s.target.id}`;
+            if (key !== seqKey) {
+                // 狀態一變（例如進入まもなく）立刻重播，跟實車一樣
+                seqKey = key;
+                rebuild(t);
+            } else {
+                st = s;
+                if (t - headT > heads[head].dur) {
+                    head = (head + 1) % heads.length;
+                    headT = t;
+                    renderHead();
+                }
+                if (t - pageT > (pages[page] === 'route' ? 11000 : 7000)) {
+                    page = (page + 1) % pages.length;
+                    pageT = t;
+                    renderBody();
+                }
             }
-            const off = nowOff();
-            clockEl.textContent = `${`0${(Math.floor(off / 3600000) + 3) % 24}`.slice(-2)}:${`0${Math.floor(off / 60000) % 60}`.slice(-2)}`;
-            const d = Math.floor((train.delay || 0) / 60000);
-            const tk = d >= 1 ? LANGS.map(l => T.delay[l](d)).join('　　') : '';
+            const d = delayMin();
+            const tk = d >= 1 ? ['ja', 'en', 'ko', 'zh-Hant'].map(l => L.delay[l](d)).join('　　　') : '';
             if (tk !== tickKey) {
                 tickKey = tk;
                 ticker.classList.toggle('on', !!tk);
                 ticker.firstChild.textContent = tk;
             }
-        }
-
-        function tick() {
-            if (!visible || !train) return;
-            const now = performance.now();
-            let st;
-            try {
-                st = state();
-            } catch (e) {
-                return;
-            }
-            const key = `${train.id}|${st.phase}|${st.target && st.target.id}`;
-            if (key !== seqKey) {
-                // 狀態一變（例如進入まもなく）就立刻從第一頁重播，跟真的 LCD 一樣
-                seqKey = key;
-                seq = buildSeq(st);
-                page = 0;
-                pageStart = now;
-                root.style.setProperty('--c', col((train.v || train.r).color));
-                render(st);
-            } else if (now - pageStart > seq[page].dur) {
-                page = (page + 1) % seq.length;
-                pageStart = now;
-                render(st);
-            }
-            header(now);
         }
         setInterval(() => {
             try {
