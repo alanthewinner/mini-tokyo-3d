@@ -23,6 +23,9 @@
     "src/"
   ],
   "scripts": {
+    "app:android": "npm run app:build && cd mobile && npm install && npx cap add android; cd mobile && npm run android",
+    "app:build": "npm run build && npm run build-pages",
+    "app:desktop": "npm run app:build && cd desktop && npm install && npm start",
     "build": "node scripts/clean.mjs dist && run-s bundle copy-assets",
     "build-all": "node scripts/clean.mjs build && run-s build build-pages build-data docs",
     "build-data": "node scripts/build-data.mjs",

@@ -1,0 +1,7 @@
+{
+  "appId": "tw.alan.kanshatokyo",
+  "appName": "看車 Tokyo",
+  "webDir": "../build",
+  "backgroundColor": "#e9e6df",
+  "android": {"allowMixedContent": false}
+}

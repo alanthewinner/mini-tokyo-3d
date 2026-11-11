@@ -19,6 +19,7 @@ dotenv.config();
 
 const port = Number(process.argv[2]) || 9966;
 const serveDev = serveStatic('dev');
+const servePublic = serveStatic('public');
 const serveAssets = serveStatic('assets');
 const serveData = serveStatic('build/data');
 
@@ -49,7 +50,7 @@ http.createServer((req, res) => {
         req.url = url.slice('/data'.length);
         serveData(req, res, done);
     } else {
-        serveDev(req, res, done);
+        serveDev(req, res, () => servePublic(req, res, done));
     }
 }).listen(port, () => {
     console.log(`\n  Mini Tokyo 3D dev server running at http://localhost:${port}/\n`);

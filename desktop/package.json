@@ -1,0 +1,23 @@
+{
+  "name": "kansha-tokyo-desktop",
+  "version": "0.1.0",
+  "description": "看車 Tokyo 桌面版（Electron 殼，內容來自 ../build）",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "prestart": "node -e \"require('fs').accessSync('../build/index.html')\"",
+    "start": "electron .",
+    "dist": "electron-builder --win --x64"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "tw.alan.kansha-tokyo",
+    "productName": "看車 Tokyo",
+    "files": ["main.js"],
+    "extraResources": [{"from": "../build", "to": "web"}],
+    "win": {"target": "nsis"}
+  }
+}

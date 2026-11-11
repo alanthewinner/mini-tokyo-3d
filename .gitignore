@@ -10,3 +10,8 @@ secrets
 !.env.example
 .DS_Store
 .eslintcache
+/desktop/node_modules
+/desktop/dist
+/mobile/node_modules
+/mobile/android
+/mobile/ios
