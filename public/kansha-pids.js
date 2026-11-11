@@ -102,6 +102,24 @@
 .kp-xfl b{display:block;font-size:3cqw;line-height:1.15;white-space:nowrap}
 .kp-xfl small{display:block;font:500 2cqw/1.2 "Noto Sans",system-ui,sans-serif;white-space:nowrap}
 .kp-xfl.dense .kp-dot{width:4.2cqw;height:4.2cqw;font-size:1.8cqw}.kp-xfl.dense b{font-size:2.3cqw}.kp-xfl.dense small{font-size:1.5cqw}
+/* 月台圖 */
+.kp-pf-board{position:absolute;transform:translateX(-50%);box-sizing:border-box;background:#f3b33d;border:.25cqw solid #8a5a00;border-radius:.4cqw;padding:.3cqw 1cqw;
+  text-align:center;white-space:nowrap;z-index:2;animation:kp-up .4s both}
+.kp-pf-board b{display:block;font-size:1.9cqw;line-height:1.2}
+.kp-pf-board small{display:block;font:600 1.15cqw/1.2 "Noto Sans",system-ui,sans-serif}
+.kp-pf-lead{position:absolute;width:.3cqw;background:#333;transform:translateX(-50%)}
+.kp-pf-ic{position:absolute;top:17cqw;transform:translateX(-50%);display:flex;gap:.3cqw}
+.kp-pf-ic svg{width:3.2cqw;height:3.2cqw;background:#fff;border:.25cqw solid #333;border-radius:.4cqw;box-sizing:border-box;padding:.2cqw}
+.kp-pf-plat{position:absolute;left:5cqw;right:9cqw;top:21cqw;height:1cqw;background:#9aa3ab}
+.kp-pf-car{position:absolute;top:22.4cqw;height:4cqw;background:#fff;border:.3cqw solid #333;box-sizing:border-box;border-radius:.6cqw;
+  display:flex;align-items:center;justify-content:center;font:700 2cqw/1 "Noto Sans",system-ui,sans-serif}
+.kp-pf-car.here{background:#e53935;color:#fff;border-color:#b71c1c}
+.kp-pf-here{position:absolute;top:27.2cqw;transform:translateX(-50%);background:#e53935;color:#fff;font-weight:700;font-size:1.6cqw;
+  line-height:1.1;padding:.3cqw .8cqw;border-radius:.4cqw;text-align:center;z-index:3;animation:kp-blink 1.4s steps(1) infinite}
+.kp-pf-here small{display:block;font:600 1cqw "Noto Sans",system-ui,sans-serif}
+.kp-pf-arrow{position:absolute;right:3cqw;top:22.1cqw;font:900 4cqw/1 system-ui,sans-serif;color:#333}
+.kp-pf-note{position:absolute;left:2cqw;bottom:.6cqw;font-weight:700;font-size:1.3cqw;color:#555}
+.kp-pf-note.img{color:#c62828}
 @media (max-width:600px){.kp{left:8px;right:8px;bottom:12px;width:auto}}`;
 
     const colorOf = c => (Array.isArray(c) ? c[0] : c) || '#00a37a';
@@ -264,9 +282,132 @@
             return Math.floor((train.delay || 0) / 60000);
         }
 
+
+        // ---- 月台圖：用出口座標推算各出口靠第幾節，沒資料就產示意圖 ----
+        const ICON = {
+            stairs: '<svg viewBox="0 0 24 24"><path d="M2 21h5v-4h4v-4h4V9h4V5h3" fill="none" stroke="#222" stroke-width="2.6"/></svg>',
+            escalator: '<svg viewBox="0 0 24 24"><path d="M2 20h5L17 8h5" fill="none" stroke="#222" stroke-width="2.6"/><path d="M2 15h4l9-9h7" fill="none" stroke="#222" stroke-width="1.4"/></svg>',
+            elevator: '<svg viewBox="0 0 24 24"><rect x="4" y="2.5" width="16" height="19" rx="1.5" fill="none" stroke="#222" stroke-width="2"/><path d="M12 5l3.5 4.5h-7zM12 19l3.5-4.5h-7z" fill="#222"/></svg>',
+            ramp: '<svg viewBox="0 0 24 24"><path d="M2 20L22 10v10z" fill="#222"/></svg>'
+        };
+        const CODE_RE = /^[A-Za-z]{0,2}\d+[a-z]?$/;
+
+        function hash(str) {
+            let h = 2166136261;
+            for (let i = 0; i < str.length; i++) {
+                h ^= str.charCodeAt(i);
+                h = Math.imul(h, 16777619);
+            }
+            return () => {
+                h ^= h << 13; h ^= h >>> 17; h ^= h << 5;
+                return ((h >>> 0) % 10000) / 10000;
+            };
+        }
+
+        function platformData() {
+            const s = st.target, {stations} = stopList(), i = stations.indexOf(s);
+            const n = Math.min(16, Math.max(2, +train.carComposition || +train.r.carComposition || 8));
+            const prev = stations[i - 1] || (st.phase === 'now' ? null : train.departureStation), next = stations[i + 1];
+            const from = prev || s, to = prev ? (next || s) : next;
+            let exits = (s.exit || []).filter(e => e && e.coord);
+            if (!exits.length) {
+                const g = map.stationGroupLookup && map.stationGroupLookup.get(s.group);
+                for (const o of g ? g.stations : []) {
+                    const ex = (o.exit || []).filter(e => e && e.coord);
+                    if (ex.length) {
+                        exits = ex;
+                        break;
+                    }
+                }
+            }
+            if (exits.length && s.coord && from && to && from.coord && to.coord && from !== to) {
+                const k = Math.cos(s.coord[1] * Math.PI / 180) * 111320, kl = 110540;
+                let ux = (to.coord[0] - from.coord[0]) * k, uy = (to.coord[1] - from.coord[1]) * kl;
+                const len = Math.hypot(ux, uy) || 1;
+                ux /= len;
+                uy /= len;
+                const half = n * 10, groups = new Map();
+                for (const e of exits) {
+                    const off = (e.coord[0] - s.coord[0]) * k * ux + (e.coord[1] - s.coord[1]) * kl * uy;
+                    const car = Math.min(n - 1, Math.max(0, Math.floor((off + half) / 20))); // 0 = 最後面（左）
+                    const gr = groups.get(car) || {car, exits: [], fac: new Set()};
+                    gr.exits.push(e);
+                    (e.facilities || ['stairs']).forEach(f => gr.fac.add(f));
+                    groups.set(car, gr);
+                }
+                return {n, kind: 'est', groups: [...groups.values()].sort((a, b) => a.car - b.car).slice(0, 5)};
+            }
+            // 沒資料：用站 ID 當種子產固定的示意圖（每次同一站都長一樣）
+            const rnd = hash(s.id || tTitle(s, 'en'));
+            const names = [['北口', 'North Gate'], ['南口', 'South Gate'], ['中央口', 'Central Gate'], ['東口', 'East Gate'], ['西口', 'West Gate']];
+            const count = 2 + Math.floor(rnd() * 2), used = new Set(), groups = [];
+            while (groups.length < count) {
+                const car = Math.floor(rnd() * n);
+                if (used.has(car)) continue;
+                used.add(car);
+                const nm = names.splice(Math.floor(rnd() * names.length), 1)[0];
+                const fac = new Set(['stairs']);
+                if (rnd() > 0.4) fac.add('escalator');
+                if (rnd() > 0.5) fac.add('elevator');
+                groups.push({car, fake: nm, fac});
+            }
+            return {n, kind: 'img', groups: groups.sort((a, b) => a.car - b.car)};
+        }
+
+        function boardText(g) {
+            if (g.fake) return {ja: `${g.fake[0]}改札方面`, en: `${g.fake[1]}`};
+            // 電梯（ID 含 .EV）只算設施，不當出口名
+            const ex = g.exits.filter(e => !/\.EV[^.]*$/.test(e.id || ''));
+            if (!ex.length) return {ja: 'エレベーター', en: 'Elevator'};
+            const names = ex.map(e => (e.title && (e.title.ja || e.title.en)) || '').filter(Boolean);
+            const more = names.length > 3 ? '…' : '';
+            if (names.every(t => CODE_RE.test(t))) {
+                return {ja: `${names.slice(0, 3).join('・')}${more} 出口`, en: `Exit ${names.slice(0, 3).join('/')}${more}`};
+            }
+            const en = ex.slice(0, 2).map(e => (e.description && e.description.en) || (e.title && e.title.en) || '').join(' / ');
+            return {ja: `${names.slice(0, 3).join('・')}${more}方面`, en};
+        }
+
+        function platformPage() {
+            const d = platformData(), n = d.n;
+            const L0 = 7, W = 80, cw = W / n;          // 車廂區域：左 7% 寬 80%
+            const cx = c => L0 + cw * (c + 0.5);
+            let h = '<div class="kp-page">';
+            h += '<div class="kp-pf-plat"></div>';
+            for (let c = 0; c < n; c++) {
+                h += `<div class="kp-pf-car${c === n - 1 ? ' here' : ''}" style="left:calc(${L0 + cw * c}% + .25cqw);width:calc(${cw}% - .5cqw)">${c + 1}</div>`;
+            }
+            h += `<div class="kp-pf-arrow">→</div><div class="kp-pf-here" style="left:${cx(n - 1)}%">現在地<small>You are here</small></div>`;
+            // 看板：估寬度，貪婪塞進兩排，塞不下就往右推；不准超出畫面
+            const rows = [[], []];
+            d.groups.forEach((g, i) => {
+                const x = cx(g.car), t = boardText(g);
+                const w = Math.max(t.ja.length * 1.95, t.en.length * 0.72) + 2.6;
+                let best = null;
+                for (let r = 0; r < 2 && !best; r++) {
+                    let bx = Math.min(99 - w / 2, Math.max(1 + w / 2, x));
+                    const last = rows[r][rows[r].length - 1];
+                    if (!last || bx - w / 2 >= last.right + 0.8) best = {r, bx};
+                }
+                if (!best) {
+                    const r = rows[0][rows[0].length - 1].right <= rows[1][rows[1].length - 1].right ? 0 : 1;
+                    best = {r, bx: Math.min(99 - w / 2, rows[r][rows[r].length - 1].right + 0.8 + w / 2)};
+                }
+                rows[best.r].push({right: best.bx + w / 2});
+                const top = best.r ? 7.4 : 1.6;
+                h += `<div class="kp-pf-board" style="left:${best.bx}%;top:${top}cqw;animation-delay:${i * 90}ms"><b>${esc(t.ja)}</b><small>${esc(t.en)}</small></div>`;
+                h += `<div class="kp-pf-lead" style="left:${x}%;top:${top + 4.4}cqw;height:${17 - top - 4.4}cqw"></div>`;
+                h += `<div class="kp-pf-ic" style="left:${x}%">${['stairs', 'escalator', 'elevator', 'ramp'].filter(f => g.fac.has(f)).map(f => ICON[f]).join('')}</div>`;
+            });
+            h += d.kind === 'est' ?
+                '<div class="kp-pf-note">※出口の位置から推算した目安です。実際の階段位置とは異なる場合があります。</div>' :
+                '<div class="kp-pf-note img">※イメージです（この駅の出口データなし）</div>';
+            return h + '</div>';
+        }
+
         function renderBody() {
             const p = pages[page];
-            body.innerHTML = p === 'route' ? routePage() : transferPage();
+            body.innerHTML = p === 'route' ? routePage() : p === 'platform' ? platformPage() : transferPage();
         }
 
         function rebuild(t) {
@@ -274,8 +415,9 @@
             const hasXf = transfers(st.target).length > 0;
             const hasKana = !!sMeta(st.target).kana;
             heads = HEAD.filter(h => h.lang !== 'kana' || hasKana);
-            pages = st.phase === 'soon' ? (hasXf ? ['transfer', 'route'] : ['route']) :
-                st.phase === 'next' ? (hasXf ? ['route', 'transfer'] : ['route']) : ['route'];
+            const xfp = hasXf ? ['transfer'] : [];
+            pages = st.phase === 'soon' ? ['platform', ...xfp] :
+                st.phase === 'next' ? ['route', 'platform', ...xfp] : ['route'];
             page = head = 0;
             pageT = headT = t;
             root.style.setProperty('--c', colorOf((train.v || train.r).color));
@@ -300,7 +442,7 @@
                     headT = t;
                     renderHead();
                 }
-                if (t - pageT > (pages[page] === 'route' ? 11000 : 7000)) {
+                if (t - pageT > (pages[page] === 'route' ? 11000 : pages[page] === 'platform' ? 9000 : 7000)) {
                     page = (page + 1) % pages.length;
                     pageT = t;
                     renderBody();
