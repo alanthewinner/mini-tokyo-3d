@@ -11,6 +11,7 @@
         scenery: '<path d="M4 20V10h3v10zm6 0V4h4v16zm7 0v-7h3v7z"/>',
         train: '<path d="M6 3h12a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3l2 3h-2.5l-2-3h-5l-2 3H5l2-3a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zm0 3v4h12V6zm1 7.5a1.5 1.5 0 1 0 0 .01zm10 0a1.5 1.5 0 1 0 0 .01z"/>',
         passenger: '<circle cx="12" cy="5" r="2.5"/><path d="M9.5 9h5l1 6h-2l-.5 7h-2l-.5-7h-2z"/>',
+        pids: '<path d="M3 5h18v12H3zm2 2v8h14V7zm2 2h6v2H7zm0 3h10v1H7zM8 19h8v2H8z"/>',
         overview: '<path d="M11 3h2v8l3-3 1.4 1.4L12 14.8 6.6 9.4 8 8l3 3zM4 16h16v4H4z"/>',
         close: '<path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12l5.6 5.6-1.4 1.4-5.6-5.6L6.4 19 5 17.6l5.6-5.6L5 6.4z"/>'
     };
@@ -77,6 +78,8 @@
         container.appendChild(strip);
 
         let stripOn = true;
+        let pidsForce = null; // null = 自動（乘客模式才顯示）
+        const pids = window.kanshaPIDS ? window.kanshaPIDS(map, container) : null;
         const buttons = {};
 
         function addBtn(key, label, onClick, extra) {
@@ -120,7 +123,16 @@
             stripOn = !stripOn;
             sync();
         });
-        addBtn('passenger', '乘客', () => setMode('front'));
+        addBtn('passenger', '乘客', () => {
+            pidsForce = null;
+            setMode('front');
+        });
+        if (pids) {
+            addBtn('pids', 'PIDS', () => {
+                pidsForce = !buttons.pids.classList.contains('on');
+                sync();
+            });
+        }
         addBtn('overview', '俯瞰', () => setMode('bird'));
         addBtn('close', '關閉', () => {
             map.trackObject();
@@ -210,6 +222,11 @@
             buttons.overview.classList.toggle('on', tracking && mode === 'bird');
             buttons.train.classList.toggle('on', stripOn);
             buttons.close.style.display = tracking ? '' : 'none';
+            if (pids) {
+                const showPids = tracking && (pidsForce === null ? mode === 'front' : pidsForce);
+                buttons.pids.classList.toggle('on', !!showPids);
+                pids.update(tracking ? t : null, showPids);
+            }
             if (tracking && stripOn) {
                 strip.classList.add('show');
                 try {
