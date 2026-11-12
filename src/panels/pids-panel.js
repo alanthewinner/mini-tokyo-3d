@@ -410,12 +410,21 @@ export default class {
                 pages.push('map');
             }
         } else {
-            if (curve) {
-                pages.push('curve');
+            // The sway warning is shown once when entering a curved section,
+            // then the display goes back to its usual rotation
+            const section = sectionIds.join('>');
+
+            if (curve && me._curveSection !== section) {
+                me._curveSection = section;
+                me._curveUntil = performance.now() + PAGE_DURATION;
             }
-            pages.push('route');
-            if (transfers.length) {
-                pages.push('transfers');
+            if (curve && performance.now() < me._curveUntil) {
+                pages.push('curve');
+            } else {
+                pages.push('route');
+                if (transfers.length) {
+                    pages.push('transfers');
+                }
             }
         }
         if (map.lang === 'ja') {
