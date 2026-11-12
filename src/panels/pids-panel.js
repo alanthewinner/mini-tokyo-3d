@@ -1,6 +1,6 @@
 import {createElement} from '../helpers/helpers';
 import {
-    PIDS_AS_OF, PIDS_CAR_COUNT, PIDS_CAR_NUMBER, PIDS_CURVES, PIDS_NOTES, PIDS_REFERENCE_TERMINAL, PIDS_STATIONS
+    PIDS_AS_OF, PIDS_CAR_COUNT, PIDS_CAR_NUMBER, PIDS_CURVES, PIDS_LINE_MARKS, PIDS_NOTES, PIDS_REFERENCE_TERMINAL, PIDS_STATIONS
 } from './pids-data';
 
 // Fallback line letters for railways without station codes in the data whose
@@ -14,12 +14,20 @@ const NUMBERED_LINES = {
 const MAX_STOPS = 8,
     PAGE_DURATION = 6000,
     NAME_DURATION = 3000,
-    ARRIVING_THRESHOLD = 45000;
+    ARRIVING_THRESHOLD = 45000,
+    SWAP_DURATION = 600;
 
-// Strings for the English route page that alternates with the Japanese one
+// English strings for the pages and labels that switch to English while the
+// header shows the English station name
 const EN = {
-    min: 'min',
-    note: 'Estimated time required.'
+    'pids-for': 'For $1',
+    'pids-next': 'Next',
+    'pids-arriving': 'Arriving at',
+    'pids-next-terminal': 'Next is the last stop',
+    'pids-arriving-terminal': 'Arriving at the last stop',
+    'pids-terminal': 'Last stop',
+    'pids-min': 'min',
+    'pids-note': 'Estimated time required.'
 };
 
 function escapeHTML(text) {
@@ -56,6 +64,59 @@ function getTitle(object, lang) {
 }
 
 /**
+ * Returns the HTML for a line symbol: a ring with a letter for Tokyo Metro and
+ * Toei lines, a rounded square with the code for other operators, or a plain
+ * colored dot if the line has no symbol.
+ * @param {Railway} railway - The railway
+ * @param {Station} station - A station of the railway, used for its code
+ * @returns {string} HTML string
+ */
+function renderLineMark(railway, station) {
+    const code = PIDS_LINE_MARKS[railway.id] || (getStationCode(station || {}) || {}).letter,
+        ring = /^(TokyoMetro|Toei)\./.test(railway.id) && code && code.length === 1;
+
+    return `<span class="pids-line ${code ? ring ? 'ring' : 'square' : 'dot'}" style="--line-color: ${railway.color};">${code ? escapeHTML(code) : ''}</span>`;
+}
+
+function renderStationNumber(station, color) {
+    const code = getStationCode(station);
+
+    return code ?
+        `<span class="pids-station-number" style="--line-color: ${color};"><b>${code.letter}</b>${code.number}</span>` :
+        '';
+}
+
+/**
+ * Replaces the content of an element with an animation: the old content
+ * leaves while the new content enters. Does nothing if the content is the
+ * same.
+ * @param {HTMLElement} element - The element
+ * @param {string} html - The new content
+ */
+function swap(element, html) {
+    if (element._html === html) {
+        return;
+    }
+
+    const animate = element._html !== undefined;
+
+    element._html = html;
+    for (const child of [...element.children]) {
+        if (!animate) {
+            child.remove();
+        } else if (!child.classList.contains('out')) {
+            child.classList.remove('in');
+            child.classList.add('out');
+            setTimeout(() => child.remove(), SWAP_DURATION);
+        }
+    }
+    createElement('div', {
+        className: `pids-swap-item${animate ? ' in' : ''}`,
+        innerHTML: html
+    }, element);
+}
+
+/**
  * Creates an in-train passenger information display (PIDS) modeled on the LCD
  * screens in Tokyo Metro cars. It shows the next stop, upcoming stops with
  * minutes to arrival, transfer lines and, where the station details are known,
@@ -76,7 +137,17 @@ export default class {
             className: 'pids closed',
             innerHTML: [
                 '<div class="pids-close-button"></div>',
-                '<div class="pids-header"></div>',
+                '<div class="pids-header">',
+                '<div class="pids-header-top">',
+                '<div class="pids-destination pids-swap"></div>',
+                '<div class="pids-car"></div>',
+                '</div>',
+                '<div class="pids-header-main">',
+                '<div class="pids-label pids-swap"></div>',
+                '<div class="pids-badge-slot pids-swap"></div>',
+                '<div class="pids-station pids-swap"></div>',
+                '</div>',
+                '</div>',
                 '<div class="pids-rule"></div>',
                 '<div class="pids-body"></div>',
                 '<div class="pids-footer"></div>'
@@ -88,7 +159,7 @@ export default class {
         });
 
         me._update();
-        me._interval = setInterval(() => me._update(), 500);
+        me._interval = setInterval(() => me._update(), 250);
 
         requestAnimationFrame(() => {
             container.classList.remove('closed');
@@ -168,16 +239,23 @@ export default class {
         return stops;
     }
 
+    /**
+     * Returns the lines you can change to at a station, each with the station
+     * of that line.
+     * @param {Station} station - The station
+     * @param {Railway} railway - The railway of the train
+     * @returns {Array<Object>} Transfers with railway and station
+     */
     _getTransfers(station, railway) {
         const map = this._map,
             group = map.stationGroupLookup.get(station.group),
             seen = new Set([railway]),
             transfers = [];
 
-        for (const {railway: r} of group ? group.stations : []) {
-            if (r && !seen.has(r)) {
-                seen.add(r);
-                transfers.push(r);
+        for (const s of group ? group.stations : []) {
+            if (s.railway && !seen.has(s.railway)) {
+                seen.add(s.railway);
+                transfers.push({railway: s.railway, station: s});
             }
         }
 
@@ -298,30 +376,31 @@ export default class {
             page = pages[Math.floor(elapsed / PAGE_DURATION) % pages.length],
             names = me._getStationNames(target.station),
             name = names[Math.floor(elapsed / NAME_DURATION) % names.length],
-            minutes = stops.slice(routeStart, routeStart + MAX_STOPS).map(({time}) =>
+            dict = name === target.station.title.en && map.lang !== 'en' ? EN : map.dict,
+            container = me._container;
+
+        container.style.setProperty('--pids-color', target.railway.color);
+        me._updateHeader(train, target, mode, terminal, origin, origin ? getTitle(stops[stops.length - 1].station, dict === EN ? 'en' : map.lang) : name, dict);
+
+        const minutes = stops.slice(routeStart, routeStart + MAX_STOPS).map(({time}) =>
                 Math.max(0, Math.round((time + delay - now) / 60000))),
-            key = [target.station.id, mode, page, name, map.lang, index, ...minutes].join();
+            key = [target.station.id, mode, page, map.lang, index, ...minutes].join();
 
         if (key === me._lastKey) {
             return;
         }
         me._lastKey = key;
 
-        const container = me._container,
-            body = container.querySelector('.pids-body');
+        const body = container.querySelector('.pids-body');
         let footer = '';
 
-        container.style.setProperty('--pids-color', target.railway.color);
-        container.querySelector('.pids-header').innerHTML = origin ?
-            me._renderOriginHeader(stops[stops.length - 1]) :
-            me._renderHeader(train, target, mode, terminal, name);
         body.className = `pids-body pids-page-${page}`;
 
         if (page === 'route' || page === 'route-en') {
             const lang = page === 'route-en' ? 'en' : map.lang;
 
             body.innerHTML = me._renderRoute(stops.slice(routeStart, routeStart + MAX_STOPS), minutes, index - routeStart, !moving, lang);
-            footer = escapeHTML(page === 'route-en' ? EN.note : map.dict['pids-note']);
+            footer = escapeHTML(page === 'route-en' ? EN['pids-note'] : map.dict['pids-note']);
         } else if (page === 'origin') {
             body.innerHTML = me._renderOrigin(stops, delay, now);
             footer = escapeHTML(map.dict['pids-note']);
@@ -341,63 +420,51 @@ export default class {
         container.querySelector('.pids-footer').innerHTML = footer;
     }
 
+    /**
+     * Updates the header in place so that changes animate like the real
+     * displays: the station name flips and the labels cross-fade.
+     * @param {Train} train - The train
+     * @param {Object} target - The stop the header is about
+     * @param {string} mode - 'next', 'arriving' or 'stopped'
+     * @param {boolean} terminal - True if the stop is the last one
+     * @param {boolean} origin - True if the train is waiting at its origin
+     * @param {string} title - The station name to show
+     * @param {Object} dict - Strings for the labels
+     */
+    _updateHeader(train, target, mode, terminal, origin, title, dict) {
+        const me = this,
+            map = me._map,
+            header = me._container.querySelector('.pids-header'),
+            suffix = terminal ? '-terminal' : '',
+            label = origin ? '' :
+            mode === 'arriving' ? dict[`pids-arriving${suffix}`] :
+            mode === 'next' ? dict[`pids-next${suffix}`] :
+            terminal ? dict['pids-terminal'] : '',
+            lang = dict === EN ? 'en' : map.lang,
+            destination = train.ds ? train.ds.map(s => getTitle(s, lang)).join(map.dict.and) :
+            map.getLocalizedRailDirectionTitle(train.d),
+            [before, after] = dict['pids-for'].split('$1'),
+            car = `<span>${PIDS_CAR_NUMBER}</span><small>${escapeHTML(lang === 'en' ? 'Car No.' : map.dict['pids-car'])}</small>`,
+            carElement = header.querySelector('.pids-car');
+
+        header.querySelector('.pids-header-main').classList.toggle('origin', origin);
+        swap(header.querySelector('.pids-destination'), origin ? '' : escapeHTML(dict['pids-for'].replace('$1', destination)));
+        swap(header.querySelector('.pids-label'), escapeHTML(label));
+        swap(header.querySelector('.pids-badge-slot'), me._renderBadge(origin ? me._stops[me._stops.length - 1].station : target.station));
+        swap(header.querySelector('.pids-station'), origin ? [
+            before.trim() ? `<span class="pids-for">${escapeHTML(before.trim())}</span>` : '',
+            `<span class="pids-station-title${isCJK(title) ? '' : ' latin'}">${escapeHTML(title)}</span>`,
+            after.trim() ? `<span class="pids-for">${escapeHTML(after.trim())}</span>` : ''
+        ].join('') : `<div class="pids-station-title${isCJK(title) ? '' : ' latin'}">${escapeHTML(title)}</div>`);
+        if (carElement._html !== car) {
+            carElement._html = carElement.innerHTML = car;
+        }
+    }
+
     _renderBadge(station) {
         const code = getStationCode(station);
 
         return `<div class="pids-badge">${code ? `<span>${code.letter}</span><span>${code.number}</span>` : ''}</div>`;
-    }
-
-    _renderCarNumber() {
-        return [
-            '<div class="pids-car">',
-            `<span>${PIDS_CAR_NUMBER}</span>`,
-            `<small>${escapeHTML(this._map.dict['pids-car'])}</small>`,
-            '</div>'
-        ].join('');
-    }
-
-    _renderHeader(train, target, mode, terminal, title) {
-        const map = this._map,
-            dict = map.dict,
-            suffix = terminal ? '-terminal' : '',
-            label = mode === 'arriving' ? dict[`pids-arriving${suffix}`] :
-            mode === 'next' ? dict[`pids-next${suffix}`] :
-            terminal ? dict['pids-terminal'] : '',
-            destination = train.ds ? map.getLocalizedStationTitle(train.ds) : map.getLocalizedRailDirectionTitle(train.d);
-
-        return [
-            '<div class="pids-header-top">',
-            `<span class="pids-destination">${escapeHTML(dict['pids-for'].replace('$1', destination))}</span>`,
-            this._renderCarNumber(),
-            '</div>',
-            '<div class="pids-header-main">',
-            `<div class="pids-label">${escapeHTML(label)}</div>`,
-            this._renderBadge(target.station),
-            '<div class="pids-station">',
-            `<div class="pids-station-title${isCJK(title) ? '' : ' latin'}">${escapeHTML(title)}</div>`,
-            '</div>',
-            '</div>'
-        ].join('');
-    }
-
-    _renderOriginHeader(last) {
-        const map = this._map,
-            [before, after] = map.dict['pids-for'].split('$1');
-
-        return [
-            '<div class="pids-header-top">',
-            '<span class="pids-destination"></span>',
-            this._renderCarNumber(),
-            '</div>',
-            '<div class="pids-header-main origin">',
-            this._renderBadge(last.station),
-            '<div class="pids-station">',
-            before.trim() ? `<span class="pids-for">${escapeHTML(before.trim())}</span>` : '',
-            `<span class="pids-station-title">${escapeHTML(map.getLocalizedStationTitle(last.station))}</span>`,
-            after.trim() ? `<span class="pids-for">${escapeHTML(after.trim())}</span>` : '',
-            '</div>',
-            '</div>'
-        ].join('');
     }
 
     _renderStopTitle(title) {
@@ -412,7 +479,7 @@ export default class {
     _renderRoute(stops, minutes, current, standing, lang) {
         const me = this,
             map = me._map,
-            min = lang === map.lang ? map.dict['pids-min'] : EN.min;
+            min = lang === map.lang ? map.dict['pids-min'] : EN['pids-min'];
 
         return [
             '<div class="pids-route">',
@@ -425,8 +492,8 @@ export default class {
                 return [
                     `<div class="pids-stop${passed ? ' passed' : ''}${i === current ? ' current' : ''}">`,
                     '<div class="pids-stop-transfers">',
-                    ...transfers.map(r =>
-                        `<div><span style="background-color: ${r.color};"></span>${escapeHTML(getTitle(r, lang))}</div>`),
+                    ...transfers.map(t =>
+                        `<div>${renderLineMark(t.railway, t.station)}${escapeHTML(getTitle(t.railway, lang))}</div>`),
                     '</div>',
                     '<div class="pids-stop-minutes">',
                     i === current ? `<div class="pids-chevron${standing ? ' standing' : ''}"></div>` :
@@ -484,10 +551,10 @@ export default class {
             '<div class="pids-map">',
             '<div class="pids-map-top">',
             '<div class="pids-map-transfers">',
-            ...transfers.slice(0, 6).map(r => [
+            ...transfers.slice(0, 6).map(t => [
                 '<div class="pids-map-transfer">',
-                `<span style="border-color: ${r.color};"></span>`,
-                `<div>${escapeHTML(getTitle(r, 'ja'))}<small>${escapeHTML(getTitle(r, 'en'))}</small></div>`,
+                renderLineMark(t.railway, t.station),
+                `<div>${escapeHTML(getTitle(t.railway, 'ja'))}<small>${escapeHTML(getTitle(t.railway, 'en'))}</small></div>`,
                 '</div>'
             ].join('')),
             '</div>',
@@ -627,12 +694,14 @@ export default class {
         const map = this._map;
 
         return [
-            `<div class="pids-transfers-title">${escapeHTML(map.dict['pids-transfer'])}</div>`,
-            '<div class="pids-transfers">',
-            ...transfers.map(r => [
-                '<div class="pids-transfer">',
-                `<span style="background-color: ${r.color};"></span>`,
-                escapeHTML(map.getLocalizedRailwayTitle(r)),
+            `<div class="pids-xfer-band">のりかえ / Transfer${map.lang === 'ja' || map.lang === 'en' ? '' : ` / ${escapeHTML(map.dict['pids-transfer'])}`}</div>`,
+            '<div class="pids-xfer-list">',
+            ...transfers.slice(0, 8).map(({railway, station}) => [
+                '<div class="pids-xfer">',
+                renderLineMark(railway, station),
+                `<div class="pids-xfer-line">${escapeHTML(getTitle(railway, map.lang))}<small>${escapeHTML(getTitle(railway, map.lang === 'en' ? 'ja' : 'en'))}</small></div>`,
+                renderStationNumber(station, railway.color),
+                `<div class="pids-xfer-station">${escapeHTML(getTitle(station, map.lang))}<small>${escapeHTML(getTitle(station, map.lang === 'en' ? 'ja' : 'en'))}</small></div>`,
                 '</div>'
             ].join('')),
             '</div>'

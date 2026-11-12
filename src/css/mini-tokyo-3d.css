@@ -1492,7 +1492,7 @@
     font-size: 34px;
     letter-spacing: 0;
 }
-.mini-tokyo-3d .pids-header-main.origin .pids-station {
+.mini-tokyo-3d .pids-header-main.origin .pids-station .pids-swap-item {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -1558,13 +1558,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.mini-tokyo-3d .pids-stop-transfers span,
-.mini-tokyo-3d .pids-transfer span {
-    display: inline-block;
-    width: 7px;
-    height: 7px;
+.mini-tokyo-3d .pids-stop-transfers .pids-line {
     margin-right: 2px;
-    border-radius: 50%;
+    transform: scale(0.8);
+    transform-origin: 0 50%;
 }
 .mini-tokyo-3d .pids-stop-minutes {
     position: relative;
@@ -1599,20 +1596,17 @@
     height: 20px;
     background-color: var(--pids-red);
     clip-path: polygon(0 0, 45% 0, 100% 50%, 45% 100%, 0 100%, 55% 50%);
-    animation: pids-blink 1.2s infinite;
-}
-.mini-tokyo-3d .pids-page-route-en .pids-chevron {
-    background-color: #1d3fd0;
+    animation: pids-chevron 1s steps(1) infinite;
 }
 .mini-tokyo-3d .pids-chevron.standing {
     animation: none;
 }
-@keyframes pids-blink {
-    0%, 60% {
-        opacity: 1;
+@keyframes pids-chevron {
+    0% {
+        background-color: var(--pids-red);
     }
-    70%, 90% {
-        opacity: 0;
+    50% {
+        background-color: #1d3fd0;
     }
 }
 .mini-tokyo-3d .pids-stop-code {
@@ -1709,27 +1703,6 @@
     writing-mode: horizontal-tb;
 }
 
-/* Transfers */
-.mini-tokyo-3d .pids-transfers-title {
-    margin: 10px 12px 8px;
-    color: #555;
-    font-size: 14px;
-    font-weight: bold;
-}
-.mini-tokyo-3d .pids-transfers {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 6px 12px;
-    margin: 0 12px;
-    font-size: 15px;
-    font-weight: bold;
-}
-.mini-tokyo-3d .pids-transfer span {
-    width: 12px;
-    height: 12px;
-    margin-right: 6px;
-    vertical-align: -1px;
-}
 
 /* Platform diagram */
 .mini-tokyo-3d .pids-map-top {
@@ -1750,14 +1723,6 @@
     font-size: 11px;
     font-weight: bold;
     line-height: 1;
-}
-.mini-tokyo-3d .pids-map-transfer span {
-    box-sizing: border-box;
-    width: 14px;
-    height: 14px;
-    border: 3px solid;
-    border-radius: 50%;
-    background-color: #fff;
 }
 .mini-tokyo-3d .pids-map-transfer small {
     font-size: 7px;
@@ -1809,6 +1774,7 @@
 .mini-tokyo-3d .pids-map-platform {
     position: relative;
     height: 130px;
+    overflow: hidden;
 }
 .mini-tokyo-3d .pids-map-lines {
     position: absolute;
@@ -1863,6 +1829,12 @@
     display: flex;
     width: 64%;
     border-bottom: 4px solid var(--pids-color);
+    animation: pids-train-in 2.4s cubic-bezier(0.15, 0.6, 0.3, 1) both;
+}
+@keyframes pids-train-in {
+    from {
+        transform: translateX(-130%);
+    }
 }
 .mini-tokyo-3d .pids-map-car {
     flex: 1;
@@ -1890,6 +1862,7 @@
 .mini-tokyo-3d .pids-map-here {
     position: absolute;
     top: 44px;
+    animation: pids-fade-in 0.4s 2.2s both;
     left: 47%;
     padding: 1px 4px 2px;
     background-color: var(--pids-red);
@@ -2062,8 +2035,175 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
 }
+/* Animated content swaps: the station name flips, everything else fades */
+.mini-tokyo-3d .pids-swap {
+    position: relative;
+}
+.mini-tokyo-3d .pids-swap-item.out {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    animation: pids-fade-out 0.3s both;
+}
+.mini-tokyo-3d .pids-swap-item.in {
+    animation: pids-fade-in 0.3s both;
+}
+.mini-tokyo-3d .pids-station > .pids-swap-item.out {
+    transform-origin: 50% 100%;
+    animation: pids-flip-out 0.5s ease-in both;
+}
+.mini-tokyo-3d .pids-station > .pids-swap-item.in {
+    transform-origin: 50% 0;
+    animation: pids-flip-in 0.5s ease-out both;
+}
+@keyframes pids-fade-in {
+    from {
+        opacity: 0;
+    }
+}
+@keyframes pids-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+@keyframes pids-flip-out {
+    to {
+        opacity: 0.2;
+        transform: scaleY(0);
+    }
+}
+@keyframes pids-flip-in {
+    from {
+        opacity: 0.2;
+        transform: scaleY(0);
+    }
+}
+
+/* Line symbols */
+.mini-tokyo-3d .pids-line {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 14px;
+    height: 14px;
+    padding: 0 1px;
+    border: 2px solid var(--line-color);
+    background-color: #fff;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7px;
+    font-weight: bold;
+    line-height: 1;
+    vertical-align: middle;
+}
+.mini-tokyo-3d .pids-line.ring {
+    width: 14px;
+    border-radius: 50%;
+    font-size: 8px;
+}
+.mini-tokyo-3d .pids-line.square {
+    border-radius: 3px;
+}
+.mini-tokyo-3d .pids-line.dot {
+    width: 9px;
+    min-width: 9px;
+    height: 9px;
+    border: 0;
+    border-radius: 50%;
+    background-color: var(--line-color);
+}
+.mini-tokyo-3d .pids-station-number {
+    display: inline-flex;
+    flex: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--line-color);
+    border-radius: 50%;
+    background-color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7px;
+    font-weight: bold;
+    line-height: 0.95;
+}
+.mini-tokyo-3d .pids-station-number b {
+    font-size: 6px;
+}
+
+/* Transfer page */
+.mini-tokyo-3d .pids-xfer-band {
+    padding: 3px 0;
+    background-color: #ddd;
+    color: #333;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+}
+.mini-tokyo-3d .pids-xfer-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+    padding: 12px 16px 24px;
+}
+.mini-tokyo-3d .pids-xfer {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+.mini-tokyo-3d .pids-xfer .pids-line {
+    min-width: 22px;
+    height: 22px;
+    border-width: 3px;
+    font-size: 10px;
+}
+.mini-tokyo-3d .pids-xfer .pids-line.ring {
+    width: 22px;
+    font-size: 12px;
+}
+.mini-tokyo-3d .pids-xfer .pids-line.dot {
+    width: 14px;
+    min-width: 14px;
+    height: 14px;
+}
+.mini-tokyo-3d .pids-xfer-line {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.mini-tokyo-3d .pids-xfer-line small,
+.mini-tokyo-3d .pids-xfer-station small {
+    overflow: hidden;
+    color: #444;
+    font-size: 8px;
+    text-overflow: ellipsis;
+}
+.mini-tokyo-3d .pids-xfer-station {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1.1;
+    white-space: nowrap;
+}
 @media (prefers-reduced-motion: reduce) {
-    .mini-tokyo-3d .pids-chevron {
+    .mini-tokyo-3d .pids-chevron,
+    .mini-tokyo-3d .pids-map-train,
+    .mini-tokyo-3d .pids-map-here,
+    .mini-tokyo-3d .pids-swap-item {
         animation: none;
     }
 }
