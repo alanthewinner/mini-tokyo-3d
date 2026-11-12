@@ -1,4 +1,4 @@
-import {createElement} from '../helpers/helpers';
+import {createElement, loadJSON, resolveAssetUrl} from '../helpers/helpers';
 import {
     PIDS_AS_OF, PIDS_CAR_COUNT, PIDS_CAR_NUMBER, PIDS_CURVES, PIDS_LINE_MARKS, PIDS_NOTES, PIDS_REFERENCE_TERMINAL, PIDS_STATIONS
 } from './pids-data';
@@ -15,7 +15,39 @@ const MAX_STOPS = 8,
     PAGE_DURATION = 6000,
     NAME_DURATION = 3000,
     ARRIVING_THRESHOLD = 45000,
-    SWAP_DURATION = 600;
+    SWAP_DURATION = 600,
+    ANNOUNCE_PATH = 'assets/announce/',
+    SOUND_STORAGE_KEY = 'mt3d:pids-sound';
+
+// Announcement clips are optional local files listed in a manifest next to
+// them; they are not part of the repository
+let announceManifest;
+
+function loadAnnounceManifest() {
+    if (!announceManifest) {
+        announceManifest = Promise.resolve()
+            .then(() => loadJSON(resolveAssetUrl(`${ANNOUNCE_PATH}manifest.json`)))
+            .then(manifest => new Set(Object.keys(manifest)))
+            .catch(() => new Set());
+    }
+    return announceManifest;
+}
+
+function getSoundSetting() {
+    try {
+        return localStorage.getItem(SOUND_STORAGE_KEY) === 'on';
+    } catch (e) {
+        return false;
+    }
+}
+
+function setSoundSetting(on) {
+    try {
+        localStorage.setItem(SOUND_STORAGE_KEY, on ? 'on' : 'off');
+    } catch (e) {
+        // Ignore storage errors
+    }
+}
 
 // English strings for the pages and labels that switch to English while the
 // header shows the English station name
@@ -137,6 +169,7 @@ export default class {
             className: 'pids closed',
             innerHTML: [
                 '<div class="pids-close-button"></div>',
+                '<div class="pids-sound-button" hidden></div>',
                 '<div class="pids-header">',
                 '<div class="pids-header-top">',
                 '<div class="pids-destination pids-swap"></div>',
@@ -158,6 +191,26 @@ export default class {
             me.remove();
         });
 
+        const soundButton = container.querySelector('.pids-sound-button');
+
+        me._sound = getSoundSetting();
+        soundButton.classList.toggle('on', me._sound);
+        soundButton.addEventListener('click', () => {
+            me._sound = !me._sound;
+            setSoundSetting(me._sound);
+            soundButton.classList.toggle('on', me._sound);
+            if (me._sound) {
+                // Play the announcement for the current situation right away
+                me._playAnnouncement(me._announceKey);
+            } else {
+                me._stopAnnouncement();
+            }
+        });
+        loadAnnounceManifest().then(clips => {
+            me._clips = clips;
+            soundButton.hidden = !clips.size;
+        });
+
         me._update();
         me._interval = setInterval(() => me._update(), 250);
 
@@ -176,6 +229,7 @@ export default class {
             return me;
         }
         clearInterval(me._interval);
+        me._stopAnnouncement();
         container.classList.add('closed');
         delete me._container;
         delete me._map;
@@ -379,6 +433,18 @@ export default class {
             dict = name === target.station.title.en && map.lang !== 'en' ? EN : map.dict,
             container = me._container;
 
+        // Announcements are recorded for one direction, so skip them when the
+        // diagrams are mirrored
+        const announceKey = me._isMirrored(stops, index) ? undefined :
+            origin ? `${stops[0].station.id}.origin` : `${target.station.id}.${mode}`;
+
+        if (announceKey !== me._announceKey) {
+            me._announceKey = announceKey;
+            if (me._sound) {
+                me._playAnnouncement(announceKey);
+            }
+        }
+
         container.style.setProperty('--pids-color', target.railway.color);
         me._updateHeader(train, target, mode, terminal, origin, origin ? getTitle(stops[stops.length - 1].station, dict === EN ? 'en' : map.lang) : name, dict);
 
@@ -458,6 +524,30 @@ export default class {
         ].join('') : `<div class="pids-station-title${isCJK(title) ? '' : ' latin'}">${escapeHTML(title)}</div>`);
         if (carElement._html !== car) {
             carElement._html = carElement.innerHTML = car;
+        }
+    }
+
+    _playAnnouncement(key) {
+        const me = this;
+
+        me._stopAnnouncement();
+        if (!key || !me._clips || !me._clips.has(key)) {
+            return;
+        }
+
+        const audio = me._audio = new Audio(resolveAssetUrl(`${ANNOUNCE_PATH}${key}.mp3`));
+
+        audio.play().catch(() => {
+            // Autoplay can be blocked until the user interacts with the page
+        });
+    }
+
+    _stopAnnouncement() {
+        const audio = this._audio;
+
+        if (audio) {
+            audio.pause();
+            delete this._audio;
         }
     }
 

@@ -10,3 +10,5 @@ secrets
 !.env.example
 .DS_Store
 .eslintcache
+# Local announcement clips for the PIDS (not for distribution)
+/assets/announce/

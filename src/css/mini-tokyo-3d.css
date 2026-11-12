@@ -1395,6 +1395,25 @@
     transform: rotate(-45deg);
 }
 
+.mini-tokyo-3d .pids-sound-button {
+    position: absolute;
+    z-index: 1;
+    bottom: 4px;
+    left: 24px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.25) no-repeat center/10px 10px svg-load('../../node_modules/@fortawesome/fontawesome-free/svgs/solid/volume-xmark.svg', fill: #fff);
+    cursor: pointer;
+}
+.mini-tokyo-3d .pids-sound-button.on {
+    background-color: var(--pids-color);
+    background-image: svg-load('../../node_modules/@fortawesome/fontawesome-free/svgs/solid/volume-high.svg', fill: #fff);
+}
+.mini-tokyo-3d .pids-sound-button[hidden] {
+    display: none;
+}
+
 /* Header */
 .mini-tokyo-3d .pids-header {
     padding: 4px 8px 0 12px;
