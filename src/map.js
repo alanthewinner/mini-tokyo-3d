@@ -16,7 +16,7 @@ import * as helpersMapbox from './helpers/helpers-mapbox';
 import * as helpersWebgl from './helpers/helpers-webgl';
 import {GeoJsonLayer, GlowCompositeLayer, RailwayStatusGlowLayer, STROKE_WIDTH_SCALE_STOPS, StationGlowLayer, ThreeLayer, Tile3DLayer, TrafficLayer, ZoomWidthScaleExtension} from './layers';
 import {isExpired, loadBusData, loadDictionary, loadDynamicBusData, loadDynamicFlightData, loadDynamicTrainData, loadStaticData, loadTimetableData, updateOdptUrl} from './loader';
-import {AboutPanel, BusPanel, LayerPanel, SharePanel, StationPanel, TrackingModePanel, TrainPanel} from './panels';
+import {AboutPanel, BusPanel, LayerPanel, PidsPanel, SharePanel, StationPanel, TrackingModePanel, TrainPanel} from './panels';
 import Plugin from './plugin';
 import nearestCloserPointOnLine from './turf/nearest-closer-point-on-line';
 
@@ -3396,7 +3396,7 @@ export default class extends Evented {
 
     trackObject(object) {
         const me = this,
-            {searchMode, lang, map, trackedObject, trafficLayer, lastCameraParams, sharePanel, detailPanel} = me;
+            {searchMode, lang, map, trackedObject, trafficLayer, lastCameraParams, sharePanel, detailPanel, pidsPanel} = me;
 
         if (searchMode === 'edit' && detailPanel && isStation(object)) {
             const {title, utitle} = object.stations[0],
@@ -3456,6 +3456,10 @@ export default class extends Evented {
                 detailPanel.remove();
                 delete me.detailPanel;
             }
+            if (pidsPanel) {
+                pidsPanel.remove();
+                delete me.pidsPanel;
+            }
         }
 
         if (object) {
@@ -3476,6 +3480,8 @@ export default class extends Evented {
                 if (object.timetable) {
                     me.detailPanel = new TrainPanel({object});
                     me.detailPanel.addTo(me);
+                    me.pidsPanel = new PidsPanel({object});
+                    me.pidsPanel.addTo(me);
                 } else if (object.trip) {
                     me.detailPanel = new BusPanel({object});
                     me.detailPanel.addTo(me);
