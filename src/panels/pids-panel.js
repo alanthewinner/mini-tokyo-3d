@@ -1,15 +1,8 @@
 import {createElement} from '../helpers/helpers';
 
-// Line letters for railways whose station order in the data matches the
-// official station numbering (number = index + 1)
+// Fallback line letters for railways without station codes in the data whose
+// station order matches the official station numbering (number = index + 1)
 const NUMBERED_LINES = {
-    'TokyoMetro.Ginza': 'G',
-    'TokyoMetro.Marunouchi': 'M',
-    'TokyoMetro.Tozai': 'T',
-    'TokyoMetro.Yurakucho': 'Y',
-    'TokyoMetro.Hanzomon': 'Z',
-    'TokyoMetro.Namboku': 'N',
-    'TokyoMetro.Fukutoshin': 'F',
     'Toei.Asakusa': 'A',
     'Toei.Mita': 'I',
     'Toei.Shinjuku': 'S'
@@ -17,6 +10,7 @@ const NUMBERED_LINES = {
 
 const MAX_STOPS = 8,
     PAGE_DURATION = 6000,
+    NAME_DURATION = 3000,
     ARRIVING_THRESHOLD = 45000;
 
 function escapeHTML(text) {
@@ -24,6 +18,12 @@ function escapeHTML(text) {
 }
 
 function getStationCode(station) {
+    const match = /^([A-Za-z]+)(\d+)$/.exec(station.code || '');
+
+    if (match) {
+        return {letter: match[1], number: match[2]};
+    }
+
     const railway = station.railway,
         letter = railway && NUMBERED_LINES[railway.id];
 
@@ -192,11 +192,22 @@ export default class {
         }
 
         const transfers = me._getTransfers(target.station, target.railway),
-            pages = moving && transfers.length ? 2 : 1,
-            page = Math.floor(performance.now() / PAGE_DURATION) % pages,
+            pages = ['route'],
+            names = me._getStationNames(target.station),
+            elapsed = performance.now();
+
+        if (moving && transfers.length) {
+            pages.push('transfers');
+        }
+        if (mode === 'arriving') {
+            pages.push('step');
+        }
+
+        const page = pages[Math.floor(elapsed / PAGE_DURATION) % pages.length],
+            name = names[Math.floor(elapsed / NAME_DURATION) % names.length],
             minutes = stops.slice(index, index + MAX_STOPS).map(({time}) =>
                 Math.max(0, Math.round((time + delay - now) / 60000))),
-            key = [target.station.id, mode, page, map.lang, ...minutes].join();
+            key = [target.station.id, mode, page, name, map.lang, ...minutes].join();
 
         if (key === me._lastKey) {
             return;
@@ -207,20 +218,36 @@ export default class {
             color = target.railway.color;
 
         container.style.setProperty('--pids-color', color);
-        container.querySelector('.pids-header').innerHTML = me._renderHeader(train, target, mode);
-        container.querySelector('.pids-body').innerHTML = page === 0 ?
-            me._renderRoute(stops.slice(index, index + MAX_STOPS), minutes, index === targetIndex) :
-            me._renderTransfers(transfers);
+        container.querySelector('.pids-header').innerHTML = me._renderHeader(train, target, mode, name);
+        container.querySelector('.pids-body').innerHTML =
+            page === 'route' ? me._renderRoute(stops.slice(index, index + MAX_STOPS), minutes, index === targetIndex) :
+            page === 'transfers' ? me._renderTransfers(transfers) :
+            me._renderWatchStep();
         container.querySelector('.pids-footer').innerHTML = escapeHTML(dict['pids-note']);
     }
 
-    _renderHeader(train, target, mode) {
+    /**
+     * Returns the station names the header cycles through, like the real
+     * displays do: the localized name, then the kana reading and English
+     * for Japanese, or English and Japanese for other languages.
+     * @param {Station} station - The station
+     * @returns {Array<string>} Distinct station names in display order
+     */
+    _getStationNames(station) {
+        const map = this._map,
+            title = station.title,
+            names = [map.getLocalizedStationTitle(station)].concat(
+                map.lang === 'ja' ? [title['ja-Hrkt'], title.en] : [title.en, title.ja]
+            );
+
+        return names.filter((name, i) => name && names.indexOf(name) === i);
+    }
+
+    _renderHeader(train, target, mode, title) {
         const map = this._map,
             dict = map.dict,
             {station, railway} = target,
             code = getStationCode(station),
-            title = map.getLocalizedStationTitle(station),
-            subtitle = map.lang === 'ja' ? station.title.en : station.title.ja,
             label = mode === 'arriving' ? dict['pids-arriving'] : mode === 'next' ? dict['pids-next'] : '';
 
         return [
@@ -233,7 +260,6 @@ export default class {
             `<div class="pids-badge">${code ? `<span>${code.letter}</span><span>${code.number}</span>` : ''}</div>`,
             '<div class="pids-station">',
             `<div class="pids-station-title">${escapeHTML(title)}</div>`,
-            subtitle && subtitle !== title ? `<div class="pids-station-subtitle">${escapeHTML(subtitle)}</div>` : '',
             '</div>',
             '</div>'
         ].join('');
@@ -278,6 +304,21 @@ export default class {
             return `<div class="pids-stop-title cjk">${[...title].map(c => `<span>${escapeHTML(c)}</span>`).join('')}</div>`;
         }
         return `<div class="pids-stop-title">${escapeHTML(title)}</div>`;
+    }
+
+    _renderWatchStep() {
+        const dict = this._map.dict,
+            english = 'Watch your step';
+
+        return [
+            '<div class="pids-step">',
+            '<div class="pids-step-door"><div></div><div></div></div>',
+            '<div class="pids-step-text">',
+            `<div>${escapeHTML(dict['pids-watch-step'])}</div>`,
+            dict['pids-watch-step'] !== english ? `<div lang="en">${english}</div>` : '',
+            '</div>',
+            '</div>'
+        ].join('');
     }
 
     _renderTransfers(transfers) {

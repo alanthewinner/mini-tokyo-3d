@@ -8,7 +8,7 @@ export default class {
 
     update(params, refs) {
         const me = this,
-            {railway, coord, utitle, thumbnail, thumbnailCredit, exit, altitude, alternate, ascending, descending, group} = params;
+            {railway, code, coord, utitle, thumbnail, thumbnailCredit, exit, altitude, alternate, ascending, descending, group} = params;
 
         /**
          * Station ID.
@@ -22,6 +22,14 @@ export default class {
              * @type {Railway}
              */
             me.railway = refs.railways.get(railway);
+        }
+
+        if (code) {
+            /**
+             * Official station code, such as "G16".
+             * @type {string}
+             */
+            me.code = code;
         }
 
         if (coord) {

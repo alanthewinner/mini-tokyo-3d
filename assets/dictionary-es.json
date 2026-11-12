@@ -62,6 +62,7 @@
 	"pids-arriving": "Llegando a",
 	"pids-min": "min",
 	"pids-transfer": "Transbordos",
+	"pids-watch-step": "Cuidado con el escalón",
 	"pids-note": "Los horarios pueden variar según el servicio.",
 	"special": "(Especial)",
 	"delay": "$1 minutos tarde",

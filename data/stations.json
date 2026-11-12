@@ -11212,6 +11212,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Shibuya",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G01",
 	"coord": [139.7024447, 35.658999],
 	"title": {
 		"ja": "渋谷",
@@ -11219,11 +11220,13 @@
 		"fr": "Shibuya",
 		"ko": "시부야",
 		"zh-Hans": "涩谷",
-		"zh-Hant": "澀谷"
+		"zh-Hant": "澀谷",
+		"ja-Hrkt": "しぶや"
 	}
 }, {
 	"id": "TokyoMetro.Ginza.OmoteSando",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G02",
 	"coord": [139.712473, 35.665042],
 	"title": {
 		"ja": "表参道",
@@ -11231,7 +11234,8 @@
 		"fr": "Omote-sando",
 		"ko": "오모테산도",
 		"zh-Hans": "表参道",
-		"zh-Hant": "表參道"
+		"zh-Hant": "表參道",
+		"ja-Hrkt": "おもてさんどう"
 	},
 	"exit": [
 		"TokyoMetro.OmoteSando.B1",
@@ -11245,6 +11249,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Gaiemmae",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G03",
 	"coord": [139.717825, 35.670375],
 	"title": {
 		"ja": "外苑前",
@@ -11252,7 +11257,8 @@
 		"fr": "Gaiemmae",
 		"ko": "가이엔마에",
 		"zh-Hans": "外苑前",
-		"zh-Hant": "外苑前"
+		"zh-Hant": "外苑前",
+		"ja-Hrkt": "がいえんまえ"
 	},
 	"exit": [
 		"TokyoMetro.Gaiemmae.1a",
@@ -11267,6 +11273,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.AoyamaItchome",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G04",
 	"coord": [139.724145, 35.67279],
 	"title": {
 		"ja": "青山一丁目",
@@ -11274,7 +11281,8 @@
 		"fr": "Aoyama-itchome",
 		"ko": "아오야마잇초메",
 		"zh-Hans": "青山一丁目",
-		"zh-Hant": "青山一丁目"
+		"zh-Hant": "青山一丁目",
+		"ja-Hrkt": "あおやまいっちょうめ"
 	},
 	"exit": [
 		"TokyoMetro.AoyamaItchome.1",
@@ -11286,6 +11294,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.AkasakaMitsuke",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G05",
 	"coord": [139.737347, 35.676845],
 	"title": {
 		"ja": "赤坂見附",
@@ -11293,7 +11302,8 @@
 		"fr": "Akasaka-mitsuke",
 		"ko": "아카사카미쓰케",
 		"zh-Hans": "赤坂见附",
-		"zh-Hant": "赤坂見附"
+		"zh-Hant": "赤坂見附",
+		"ja-Hrkt": "あかさかみつけ"
 	},
 	"exit": [
 		"TokyoMetro.AkasakaMitsuke.10",
@@ -11308,6 +11318,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.TameikeSanno",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G06",
 	"coord": [139.741943, 35.671511],
 	"title": {
 		"ja": "溜池山王",
@@ -11315,7 +11326,8 @@
 		"fr": "Tameike-sanno",
 		"ko": "다메이케산노",
 		"zh-Hans": "溜池山王",
-		"zh-Hant": "溜池山王"
+		"zh-Hant": "溜池山王",
+		"ja-Hrkt": "ためいけさんのう"
 	},
 	"exit": [
 		"TokyoMetro.TameikeSanno.8",
@@ -11331,6 +11343,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Toranomon",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G07",
 	"coord": [139.75012, 35.67016],
 	"title": {
 		"ja": "虎ノ門",
@@ -11338,7 +11351,8 @@
 		"fr": "Toranomon",
 		"ko": "도라노몬",
 		"zh-Hans": "虎之门",
-		"zh-Hant": "虎之門"
+		"zh-Hant": "虎之門",
+		"ja-Hrkt": "とらのもん"
 	},
 	"exit": [
 		"TokyoMetro.Toranomon.1",
@@ -11362,6 +11376,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Shimbashi",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G08",
 	"coord": [139.758512, 35.667382],
 	"title": {
 		"ja": "新橋",
@@ -11369,7 +11384,8 @@
 		"fr": "Shimbashi",
 		"ko": "신바시",
 		"zh-Hans": "新桥",
-		"zh-Hant": "新橋"
+		"zh-Hant": "新橋",
+		"ja-Hrkt": "しんばし"
 	},
 	"exit": [
 		"TokyoMetro.Shimbashi.1",
@@ -11386,6 +11402,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Ginza",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G09",
 	"coord": [139.765366, 35.6715],
 	"title": {
 		"ja": "銀座",
@@ -11393,7 +11410,8 @@
 		"fr": "Ginza",
 		"ko": "긴자",
 		"zh-Hans": "银座",
-		"zh-Hant": "銀座"
+		"zh-Hant": "銀座",
+		"ja-Hrkt": "ぎんざ"
 	},
 	"exit": [
 		"TokyoMetro.Ginza.A1",
@@ -11413,6 +11431,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Kyobashi",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G10",
 	"coord": [139.77011, 35.676704],
 	"title": {
 		"ja": "京橋",
@@ -11421,7 +11440,8 @@
 		"ko": "교바시",
 		"zh-Hans": "京桥",
 		"zh-Hant": "京橋",
-		"ja-Wiki": "京橋駅 (東京都)"
+		"ja-Wiki": "京橋駅 (東京都)",
+		"ja-Hrkt": "きょうばし"
 	},
 	"exit": [
 		"TokyoMetro.Kyobashi.1",
@@ -11438,6 +11458,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Nihombashi",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G11",
 	"coord": [139.773335, 35.681879],
 	"title": {
 		"ja": "日本橋",
@@ -11446,7 +11467,8 @@
 		"ko": "니혼바시",
 		"zh-Hans": "日本桥",
 		"zh-Hant": "日本橋",
-		"ja-Wiki": "日本橋駅 (東京都)"
+		"ja-Wiki": "日本橋駅 (東京都)",
+		"ja-Hrkt": "にほんばし"
 	},
 	"exit": [
 		"TokyoMetro.Nihombashi.A1",
@@ -11472,6 +11494,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Mitsukoshimae",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G12",
 	"coord": [139.773582, 35.687173],
 	"title": {
 		"ja": "三越前",
@@ -11479,7 +11502,8 @@
 		"fr": "Mitsukoshimae",
 		"ko": "미쓰코시마에",
 		"zh-Hans": "三越前",
-		"zh-Hant": "三越前"
+		"zh-Hant": "三越前",
+		"ja-Hrkt": "みつこしまえ"
 	},
 	"exit": [
 		"TokyoMetro.Mitsukoshimae.A1",
@@ -11497,6 +11521,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Kanda",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G13",
 	"coord": [139.77089, 35.693715],
 	"title": {
 		"ja": "神田",
@@ -11505,7 +11530,8 @@
 		"ko": "간다",
 		"zh-Hans": "神田",
 		"zh-Hant": "神田",
-		"ja-Wiki": "神田駅 (東京都)"
+		"ja-Wiki": "神田駅 (東京都)",
+		"ja-Hrkt": "かんだ"
 	},
 	"exit": [
 		"TokyoMetro.Kanda.1",
@@ -11519,6 +11545,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Suehirocho",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G14",
 	"coord": [139.771762, 35.70278],
 	"title": {
 		"ja": "末広町",
@@ -11527,7 +11554,8 @@
 		"ko": "수에히로초",
 		"zh-Hans": "末广町",
 		"zh-Hant": "末廣町",
-		"ja-Wiki": "末広町駅 (東京都)"
+		"ja-Wiki": "末広町駅 (東京都)",
+		"ja-Hrkt": "すえひろちょう"
 	},
 	"exit": [
 		"TokyoMetro.Suehirocho.1",
@@ -11540,6 +11568,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.UenoHirokoji",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G15",
 	"coord": [139.773011, 35.707765],
 	"title": {
 		"ja": "上野広小路",
@@ -11547,7 +11576,8 @@
 		"fr": "Ueno-hirokoji",
 		"ko": "우에노히로코지",
 		"zh-Hans": "上野广小路",
-		"zh-Hant": "上野廣小路"
+		"zh-Hant": "上野廣小路",
+		"ja-Hrkt": "うえのひろこうじ"
 	},
 	"exit": [
 		"TokyoMetro.UenoHirokoji.C2",
@@ -11563,6 +11593,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Ueno",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G16",
 	"coord": [139.7760755, 35.711795],
 	"title": {
 		"ja": "上野",
@@ -11570,7 +11601,8 @@
 		"fr": "Ueno",
 		"ko": "우에노",
 		"zh-Hans": "上野",
-		"zh-Hant": "上野"
+		"zh-Hant": "上野",
+		"ja-Hrkt": "うえの"
 	},
 	"exit": [
 		"TokyoMetro.Ueno.EVv",
@@ -11586,6 +11618,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Inaricho",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G17",
 	"coord": [139.7826677, 35.7113442],
 	"title": {
 		"ja": "稲荷町",
@@ -11594,7 +11627,8 @@
 		"ko": "이나리초",
 		"zh-Hans": "稻荷町",
 		"zh-Hant": "稻荷町",
-		"ja-Wiki": "稲荷町駅 (東京都)"
+		"ja-Wiki": "稲荷町駅 (東京都)",
+		"ja-Hrkt": "いなりちょう"
 	},
 	"exit": [
 		"TokyoMetro.Inaricho.1",
@@ -11606,6 +11640,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Tawaramachi",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G18",
 	"coord": [139.7907747, 35.709842],
 	"title": {
 		"ja": "田原町",
@@ -11614,7 +11649,8 @@
 		"ko": "다와라마치",
 		"zh-Hans": "田原町",
 		"zh-Hant": "田原町",
-		"ja-Wiki": "田原町駅 (東京都)"
+		"ja-Wiki": "田原町駅 (東京都)",
+		"ja-Hrkt": "たわらまち"
 	},
 	"exit": [
 		"TokyoMetro.Tawaramachi.1",
@@ -11627,6 +11663,7 @@
 }, {
 	"id": "TokyoMetro.Ginza.Asakusa",
 	"railway": "TokyoMetro.Ginza",
+	"code": "G19",
 	"coord": [139.797774, 35.710746],
 	"title": {
 		"ja": "浅草",
@@ -11634,7 +11671,8 @@
 		"fr": "Asakusa",
 		"ko": "아사쿠사",
 		"zh-Hans": "浅草",
-		"zh-Hant": "淺草"
+		"zh-Hant": "淺草",
+		"ja-Hrkt": "あさくさ"
 	},
 	"exit": [
 		"TokyoMetro.Asakusa.1",
@@ -11650,6 +11688,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Ogikubo",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M01",
 	"coord": [139.61976, 35.704175],
 	"title": {
 		"ja": "荻窪",
@@ -11657,7 +11696,8 @@
 		"fr": "Ogikubo",
 		"ko": "오기쿠보",
 		"zh-Hans": "荻洼",
-		"zh-Hant": "荻窪"
+		"zh-Hant": "荻窪",
+		"ja-Hrkt": "おぎくぼ"
 	},
 	"exit": [
 		"TokyoMetro.Ogikubo.West",
@@ -11669,6 +11709,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.MinamiAsagaya",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M02",
 	"coord": [139.635575, 35.699455],
 	"title": {
 		"ja": "南阿佐ケ谷",
@@ -11676,7 +11717,8 @@
 		"fr": "Minami-asagaya",
 		"ko": "미나미아사가야",
 		"zh-Hans": "南阿佐谷",
-		"zh-Hant": "南阿佐谷"
+		"zh-Hant": "南阿佐谷",
+		"ja-Hrkt": "みなみあさがや"
 	},
 	"exit": [
 		"TokyoMetro.MinamiAsagaya.1",
@@ -11689,6 +11731,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.ShinKoenji",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M03",
 	"coord": [139.64851, 35.69786],
 	"title": {
 		"ja": "新高円寺",
@@ -11696,7 +11739,8 @@
 		"fr": "Shin-koenji",
 		"ko": "신코엔지",
 		"zh-Hans": "新高圆寺",
-		"zh-Hant": "新高圓寺"
+		"zh-Hant": "新高圓寺",
+		"ja-Hrkt": "しんこうえんじ"
 	},
 	"exit": [
 		"TokyoMetro.ShinKoenji.1",
@@ -11708,6 +11752,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.HigashiKoenji",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M04",
 	"coord": [139.658295, 35.697965],
 	"title": {
 		"ja": "東高円寺",
@@ -11715,7 +11760,8 @@
 		"fr": "Higashi-koenji",
 		"ko": "히가시코엔지",
 		"zh-Hans": "东高圆寺",
-		"zh-Hant": "東高圓寺"
+		"zh-Hant": "東高圓寺",
+		"ja-Hrkt": "ひがしこうえんじ"
 	},
 	"exit": [
 		"TokyoMetro.HigashiKoenji.1",
@@ -11727,6 +11773,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.ShinNakano",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M05",
 	"coord": [139.66951, 35.697475],
 	"title": {
 		"ja": "新中野",
@@ -11734,7 +11781,8 @@
 		"fr": "Shin-nakano",
 		"ko": "신나카노",
 		"zh-Hans": "新中野",
-		"zh-Hant": "新中野"
+		"zh-Hant": "新中野",
+		"ja-Hrkt": "しんなかの"
 	},
 	"exit": [
 		"TokyoMetro.ShinNakano.1",
@@ -11748,6 +11796,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.NakanoSakaue",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M06",
 	"coord": [139.682205, 35.697085],
 	"title": {
 		"ja": "中野坂上",
@@ -11755,7 +11804,8 @@
 		"fr": "Nakano-sakaue",
 		"ko": "나카노사카우에",
 		"zh-Hans": "中野坂上",
-		"zh-Hant": "中野坂上"
+		"zh-Hant": "中野坂上",
+		"ja-Hrkt": "なかのさかうえ"
 	},
 	"exit": [
 		"TokyoMetro.NakanoSakaue.1",
@@ -11766,6 +11816,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.NishiShinjuku",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M07",
 	"coord": [139.69256, 35.694515],
 	"title": {
 		"ja": "西新宿",
@@ -11773,7 +11824,8 @@
 		"fr": "Nishi-shinjuku",
 		"ko": "니시신주쿠",
 		"zh-Hans": "西新宿",
-		"zh-Hant": "西新宿"
+		"zh-Hant": "西新宿",
+		"ja-Hrkt": "にししんじゅく"
 	},
 	"exit": [
 		"TokyoMetro.NishiShinjuku.1",
@@ -11792,6 +11844,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Shinjuku",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M08",
 	"coord": [139.700548, 35.692452],
 	"title": {
 		"ja": "新宿",
@@ -11799,7 +11852,8 @@
 		"fr": "Shinjuku",
 		"ko": "신주쿠",
 		"zh-Hans": "新宿",
-		"zh-Hant": "新宿"
+		"zh-Hant": "新宿",
+		"ja-Hrkt": "しんじゅく"
 	},
 	"exit": [
 		"TokyoMetro.Shinjuku.A6",
@@ -11830,6 +11884,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.ShinjukuSanchome",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M09",
 	"coord": [139.70421, 35.69118],
 	"title": {
 		"ja": "新宿三丁目",
@@ -11837,7 +11892,8 @@
 		"fr": "Shinjuku-sanchome",
 		"ko": "신주쿠산초메",
 		"zh-Hans": "新宿三丁目",
-		"zh-Hant": "新宿三丁目"
+		"zh-Hant": "新宿三丁目",
+		"ja-Hrkt": "しんじゅくさんちょうめ"
 	},
 	"exit": [
 		"TokyoMetro.ShinjukuSanchome.A1",
@@ -11856,6 +11912,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.ShinjukuGyoemmae",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M10",
 	"coord": [139.710915, 35.688525],
 	"title": {
 		"ja": "新宿御苑前",
@@ -11863,7 +11920,8 @@
 		"fr": "Shinjuku-gyoemmae",
 		"ko": "신주쿠교엔마에",
 		"zh-Hans": "新宿御苑前",
-		"zh-Hant": "新宿御苑前"
+		"zh-Hant": "新宿御苑前",
+		"ja-Hrkt": "しんじゅくぎょえんまえ"
 	},
 	"exit": [
 		"TokyoMetro.ShinjukuGyoemmae.1",
@@ -11874,6 +11932,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.YotsuyaSanchome",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M11",
 	"coord": [139.7205672, 35.6879717],
 	"title": {
 		"ja": "四谷三丁目",
@@ -11881,7 +11940,8 @@
 		"fr": "Yotsuya-sanchome",
 		"ko": "요쓰야산초메",
 		"zh-Hans": "四谷三丁目",
-		"zh-Hant": "四谷三丁目"
+		"zh-Hant": "四谷三丁目",
+		"ja-Hrkt": "よつやさんちょうめ"
 	},
 	"exit": [
 		"TokyoMetro.YotsuyaSanchome.1",
@@ -11893,6 +11953,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Yotsuya",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M12",
 	"coord": [139.7299697, 35.6845484],
 	"title": {
 		"ja": "四ツ谷",
@@ -11900,12 +11961,14 @@
 		"fr": "Yotsuya",
 		"ko": "요쓰야",
 		"zh-Hans": "四谷",
-		"zh-Hant": "四谷"
+		"zh-Hant": "四谷",
+		"ja-Hrkt": "よつや"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Marunouchi.AkasakaMitsuke",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M13",
 	"coord": [139.737347, 35.676845],
 	"title": {
 		"ja": "赤坂見附",
@@ -11913,12 +11976,14 @@
 		"fr": "Akasaka-mitsuke",
 		"ko": "아카사카미쓰케",
 		"zh-Hans": "赤坂见附",
-		"zh-Hant": "赤坂見附"
+		"zh-Hant": "赤坂見附",
+		"ja-Hrkt": "あかさかみつけ"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Marunouchi.KokkaiGijidomae",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M14",
 	"coord": [139.745568, 35.6745352],
 	"title": {
 		"ja": "国会議事堂前",
@@ -11926,7 +11991,8 @@
 		"fr": "Kokkai-gijidomae",
 		"ko": "곳카이기지도마에",
 		"zh-Hans": "国会议事堂前",
-		"zh-Hant": "國會議事堂前"
+		"zh-Hant": "國會議事堂前",
+		"ja-Hrkt": "こっかいぎじどうまえ"
 	},
 	"exit": [
 		"TokyoMetro.KokkaiGijidomae.1",
@@ -11937,6 +12003,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Kasumigaseki",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M15",
 	"coord": [139.75268, 35.674235],
 	"title": {
 		"ja": "霞ケ関",
@@ -11945,7 +12012,8 @@
 		"ko": "가스미가세키",
 		"zh-Hans": "霞关",
 		"zh-Hant": "霞關",
-		"ja-Wiki": "霞ケ関駅 (東京都)"
+		"ja-Wiki": "霞ケ関駅 (東京都)",
+		"ja-Hrkt": "かすみがせき"
 	},
 	"utitle": {
 		"ja": "霞ケ関 (東京)",
@@ -11966,6 +12034,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Ginza",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M16",
 	"coord": [139.7631812, 35.6728944],
 	"title": {
 		"ja": "銀座",
@@ -11973,7 +12042,8 @@
 		"fr": "Ginza",
 		"ko": "긴자",
 		"zh-Hans": "银座",
-		"zh-Hant": "銀座"
+		"zh-Hant": "銀座",
+		"ja-Hrkt": "ぎんざ"
 	},
 	"exit": [
 		"TokyoMetro.Ginza.C1",
@@ -11992,6 +12062,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Tokyo",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M17",
 	"coord": [139.7648, 35.681935],
 	"title": {
 		"ja": "東京",
@@ -11999,7 +12070,8 @@
 		"fr": "Tokyo",
 		"ko": "도쿄",
 		"zh-Hans": "东京",
-		"zh-Hant": "東京"
+		"zh-Hant": "東京",
+		"ja-Hrkt": "とうきょう"
 	},
 	"exit": [
 		"TokyoMetro.Tokyo.M1",
@@ -12025,6 +12097,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Otemachi",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M18",
 	"coord": [139.766203, 35.686875],
 	"title": {
 		"ja": "大手町",
@@ -12033,7 +12106,8 @@
 		"ko": "오테마치",
 		"zh-Hans": "大手町",
 		"zh-Hant": "大手町",
-		"ja-Wiki": "大手町駅 (東京都)"
+		"ja-Wiki": "大手町駅 (東京都)",
+		"ja-Hrkt": "おおてまち"
 	},
 	"exit": [
 		"TokyoMetro.Otemachi.A1",
@@ -12045,6 +12119,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Awajicho",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M19",
 	"coord": [139.767455, 35.69487],
 	"title": {
 		"ja": "淡路町",
@@ -12052,7 +12127,8 @@
 		"fr": "Awajicho",
 		"ko": "아와지초",
 		"zh-Hans": "淡路町",
-		"zh-Hant": "淡路町"
+		"zh-Hant": "淡路町",
+		"ja-Hrkt": "あわじちょう"
 	},
 	"exit": [
 		"TokyoMetro.Awajicho.A3",
@@ -12063,6 +12139,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Ochanomizu",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M20",
 	"coord": [139.7640257, 35.7005663],
 	"title": {
 		"ja": "御茶ノ水",
@@ -12070,7 +12147,8 @@
 		"fr": "Ochanomizu",
 		"ko": "오차노미즈",
 		"zh-Hans": "御茶之水",
-		"zh-Hant": "御茶之水"
+		"zh-Hant": "御茶之水",
+		"ja-Hrkt": "おちゃのみず"
 	},
 	"exit": [
 		"TokyoMetro.Ochanomizu.1",
@@ -12082,6 +12160,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.HongoSanchome",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M21",
 	"coord": [139.760154, 35.706726],
 	"title": {
 		"ja": "本郷三丁目",
@@ -12089,7 +12168,8 @@
 		"fr": "Hongo-sanchome",
 		"ko": "혼고산초메",
 		"zh-Hans": "本乡三丁目",
-		"zh-Hant": "本鄉三丁目"
+		"zh-Hant": "本鄉三丁目",
+		"ja-Hrkt": "ほんごうさんちょうめ"
 	},
 	"exit": [
 		"TokyoMetro.HongoSanchome.1",
@@ -12099,6 +12179,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Korakuen",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M22",
 	"coord": [139.7512504, 35.7073394],
 	"title": {
 		"ja": "後楽園",
@@ -12106,7 +12187,8 @@
 		"fr": "Korakuen",
 		"ko": "고라쿠엔",
 		"zh-Hans": "後乐园",
-		"zh-Hant": "後樂園"
+		"zh-Hant": "後樂園",
+		"ja-Hrkt": "こうらくえん"
 	},
 	"exit": [
 		"TokyoMetro.Korakuen.1",
@@ -12120,6 +12202,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Myogadani",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M23",
 	"coord": [139.736895, 35.7172],
 	"title": {
 		"ja": "茗荷谷",
@@ -12127,7 +12210,8 @@
 		"fr": "Myogadani",
 		"ko": "묘가다니",
 		"zh-Hans": "茗荷谷",
-		"zh-Hant": "茗荷谷"
+		"zh-Hant": "茗荷谷",
+		"ja-Hrkt": "みょうがだに"
 	},
 	"exit": [
 		"TokyoMetro.Myogadani.1",
@@ -12138,6 +12222,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.ShinOtsuka",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M24",
 	"coord": [139.7299314, 35.7257925],
 	"title": {
 		"ja": "新大塚",
@@ -12145,7 +12230,8 @@
 		"fr": "Shin-otsuka",
 		"ko": "신오쓰카",
 		"zh-Hans": "新大冢",
-		"zh-Hant": "新大塚"
+		"zh-Hant": "新大塚",
+		"ja-Hrkt": "しんおおつか"
 	},
 	"exit": [
 		"TokyoMetro.ShinOtsuka.1",
@@ -12155,6 +12241,7 @@
 }, {
 	"id": "TokyoMetro.Marunouchi.Ikebukuro",
 	"railway": "TokyoMetro.Marunouchi",
+	"code": "M25",
 	"coord": [139.71115, 35.730345],
 	"title": {
 		"ja": "池袋",
@@ -12162,7 +12249,8 @@
 		"fr": "Ikebukuro",
 		"ko": "이케부쿠로",
 		"zh-Hans": "池袋",
-		"zh-Hant": "池袋"
+		"zh-Hant": "池袋",
+		"ja-Hrkt": "いけぶくろ"
 	},
 	"exit": [
 		"TokyoMetro.Ikebukuro.6a",
@@ -12209,6 +12297,7 @@
 }, {
 	"id": "TokyoMetro.MarunouchiBranch.Honancho",
 	"railway": "TokyoMetro.MarunouchiBranch",
+	"code": "Mb03",
 	"coord": [139.657935, 35.683515],
 	"title": {
 		"ja": "方南町",
@@ -12216,7 +12305,8 @@
 		"fr": "Honancho",
 		"ko": "호난초",
 		"zh-Hans": "方南町",
-		"zh-Hant": "方南町"
+		"zh-Hant": "方南町",
+		"ja-Hrkt": "ほうなんちょう"
 	},
 	"exit": [
 		"TokyoMetro.Honancho.1",
@@ -12228,6 +12318,7 @@
 }, {
 	"id": "TokyoMetro.MarunouchiBranch.NakanoFujimicho",
 	"railway": "TokyoMetro.MarunouchiBranch",
+	"code": "Mb04",
 	"coord": [139.6672426, 35.69064],
 	"title": {
 		"ja": "中野富士見町",
@@ -12235,7 +12326,8 @@
 		"fr": "Nakano-fujimicho",
 		"ko": "나카노후지미초",
 		"zh-Hans": "中野富士见町",
-		"zh-Hant": "中野富士見町"
+		"zh-Hant": "中野富士見町",
+		"ja-Hrkt": "なかのふじみちょう"
 	},
 	"exit": [
 		"TokyoMetro.NakanoFujimicho.1"
@@ -12244,6 +12336,7 @@
 }, {
 	"id": "TokyoMetro.MarunouchiBranch.NakanoShimbashi",
 	"railway": "TokyoMetro.MarunouchiBranch",
+	"code": "Mb05",
 	"coord": [139.674001, 35.691685],
 	"title": {
 		"ja": "中野新橋",
@@ -12251,7 +12344,8 @@
 		"fr": "Nakano-Shimbashi",
 		"ko": "나카노신바시",
 		"zh-Hans": "中野新桥",
-		"zh-Hant": "中野新橋"
+		"zh-Hant": "中野新橋",
+		"ja-Hrkt": "なかのさかうえ"
 	},
 	"exit": [
 		"TokyoMetro.NakanoShimbashi.1"
@@ -12260,6 +12354,7 @@
 }, {
 	"id": "TokyoMetro.MarunouchiBranch.NakanoSakaue",
 	"railway": "TokyoMetro.MarunouchiBranch",
+	"code": "M06",
 	"coord": [139.682205, 35.697085],
 	"title": {
 		"ja": "中野坂上",
@@ -12267,12 +12362,14 @@
 		"fr": "Nakano-sakaue",
 		"ko": "나카노사카우에",
 		"zh-Hans": "中野坂上",
-		"zh-Hant": "中野坂上"
+		"zh-Hant": "中野坂上",
+		"ja-Hrkt": "なかのさかうえ"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Hibiya.NakaMeguro",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H01",
 	"coord": [139.699116, 35.64431],
 	"title": {
 		"ja": "中目黒",
@@ -12280,11 +12377,13 @@
 		"fr": "Naka-meguro",
 		"ko": "나카메구로",
 		"zh-Hans": "中目黒",
-		"zh-Hant": "中目黑"
+		"zh-Hant": "中目黑",
+		"ja-Hrkt": "なかめぐろ"
 	}
 }, {
 	"id": "TokyoMetro.Hibiya.Ebisu",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H02",
 	"coord": [139.708701, 35.64704],
 	"title": {
 		"ja": "恵比寿",
@@ -12292,7 +12391,8 @@
 		"fr": "Ebisu",
 		"ko": "에비스",
 		"zh-Hans": "恵比寿",
-		"zh-Hant": "惠比壽"
+		"zh-Hant": "惠比壽",
+		"ja-Hrkt": "えびす"
 	},
 	"exit": [
 		"TokyoMetro.Ebisu.1",
@@ -12305,6 +12405,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.HiroO",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H03",
 	"coord": [139.722209, 35.651499],
 	"title": {
 		"ja": "広尾",
@@ -12312,7 +12413,8 @@
 		"fr": "Hiro-o",
 		"ko": "히로오",
 		"zh-Hans": "广尾",
-		"zh-Hant": "廣尾"
+		"zh-Hant": "廣尾",
+		"ja-Hrkt": "ひろお"
 	},
 	"exit": [
 		"TokyoMetro.HiroO.1",
@@ -12324,6 +12426,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Roppongi",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H04",
 	"coord": [139.731155, 35.6628],
 	"title": {
 		"ja": "六本木",
@@ -12331,7 +12434,8 @@
 		"fr": "Roppongi",
 		"ko": "롯폰기",
 		"zh-Hans": "六本木",
-		"zh-Hant": "六本木"
+		"zh-Hant": "六本木",
+		"ja-Hrkt": "ろっぽんぎ"
 	},
 	"exit": [
 		"TokyoMetro.Roppongi.1a",
@@ -12346,6 +12450,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Kamiyacho",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H05",
 	"coord": [139.7450477, 35.662964],
 	"title": {
 		"ja": "神谷町",
@@ -12353,7 +12458,8 @@
 		"fr": "Kamiyacho",
 		"ko": "가미야초",
 		"zh-Hans": "神谷町",
-		"zh-Hant": "神谷町"
+		"zh-Hant": "神谷町",
+		"ja-Hrkt": "かみやちょう"
 	},
 	"exit": [
 		"TokyoMetro.Kamiyacho.1",
@@ -12367,6 +12473,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.ToranomonHills",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H06",
 	"coord": [139.7477648, 35.6674688],
 	"title": {
 		"ja": "虎ノ門ヒルズ",
@@ -12374,7 +12481,8 @@
 		"fr": "Toranomon-hills",
 		"ko": "도라노몬힐스",
 		"zh-Hans": "虎之门Hills",
-		"zh-Hant": "虎之門Hills"
+		"zh-Hant": "虎之門Hills",
+		"ja-Hrkt": "とらのもんひるず"
 	},
 	"exit": [
 		"TokyoMetro.ToranomonHills.A1a",
@@ -12390,6 +12498,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Kasumigaseki",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H07",
 	"coord": [139.75106, 35.673875],
 	"title": {
 		"ja": "霞ケ関",
@@ -12398,7 +12507,8 @@
 		"ko": "가스미가세키",
 		"zh-Hans": "霞关",
 		"zh-Hant": "霞關",
-		"ja-Wiki": "霞ケ関駅 (東京都)"
+		"ja-Wiki": "霞ケ関駅 (東京都)",
+		"ja-Hrkt": "かすみがせき"
 	},
 	"utitle": {
 		"ja": "霞ケ関 (東京)",
@@ -12431,6 +12541,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Hibiya",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H08",
 	"coord": [139.7606, 35.674271],
 	"title": {
 		"ja": "日比谷",
@@ -12438,7 +12549,8 @@
 		"fr": "Hibiya",
 		"ko": "히비야",
 		"zh-Hans": "日比谷",
-		"zh-Hant": "日比谷"
+		"zh-Hant": "日比谷",
+		"ja-Hrkt": "ひびや"
 	},
 	"exit": [
 		"TokyoMetro.Hibiya.A0",
@@ -12456,6 +12568,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Ginza",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H09",
 	"coord": [139.764007, 35.671983],
 	"title": {
 		"ja": "銀座",
@@ -12463,7 +12576,8 @@
 		"fr": "Ginza",
 		"ko": "긴자",
 		"zh-Hans": "银座",
-		"zh-Hant": "銀座"
+		"zh-Hant": "銀座",
+		"ja-Hrkt": "ぎんざ"
 	},
 	"exit": [
 		"TokyoMetro.Ginza.B1",
@@ -12482,6 +12596,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.HigashiGinza",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H10",
 	"coord": [139.767633, 35.669129],
 	"title": {
 		"ja": "東銀座",
@@ -12489,7 +12604,8 @@
 		"fr": "Higashi-ginza",
 		"ko": "히가시긴자",
 		"zh-Hans": "东银座",
-		"zh-Hant": "東銀座"
+		"zh-Hant": "東銀座",
+		"ja-Hrkt": "ひがしぎんざ"
 	},
 	"exit": [
 		"TokyoMetro.HigashiGinza.3",
@@ -12501,6 +12617,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Tsukiji",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H11",
 	"coord": [139.772473, 35.667928],
 	"title": {
 		"ja": "築地",
@@ -12508,7 +12625,8 @@
 		"fr": "Tsukiji",
 		"ko": "쓰키지",
 		"zh-Hans": "筑地",
-		"zh-Hant": "築地"
+		"zh-Hant": "築地",
+		"ja-Hrkt": "つきじ"
 	},
 	"exit": [
 		"TokyoMetro.Tsukiji.1",
@@ -12523,6 +12641,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Hatchobori",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H12",
 	"coord": [139.777334, 35.675368],
 	"title": {
 		"ja": "八丁堀",
@@ -12530,7 +12649,8 @@
 		"fr": "Hatchobori",
 		"ko": "핫초보리",
 		"zh-Hans": "八丁堀",
-		"zh-Hant": "八丁堀"
+		"zh-Hant": "八丁堀",
+		"ja-Hrkt": "はっちょうぼり"
 	},
 	"exit": [
 		"TokyoMetro.Hatchobori.A1",
@@ -12545,6 +12665,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Kayabacho",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H13",
 	"coord": [139.779619, 35.679078],
 	"title": {
 		"ja": "茅場町",
@@ -12552,7 +12673,8 @@
 		"fr": "Kayabacho",
 		"ko": "가야바초",
 		"zh-Hans": "茅场町",
-		"zh-Hant": "茅場町"
+		"zh-Hant": "茅場町",
+		"ja-Hrkt": "かやばちょう"
 	},
 	"exit": [
 		"TokyoMetro.Kayabacho.1a",
@@ -12568,6 +12690,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Ningyocho",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H14",
 	"coord": [139.782339, 35.686259],
 	"title": {
 		"ja": "人形町",
@@ -12575,7 +12698,8 @@
 		"fr": "Ningyocho",
 		"ko": "닌교초",
 		"zh-Hans": "人形町",
-		"zh-Hant": "人形町"
+		"zh-Hant": "人形町",
+		"ja-Hrkt": "にんぎょうちょう"
 	},
 	"exit": [
 		"TokyoMetro.Ningyocho.A1",
@@ -12587,6 +12711,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Kodemmacho",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H15",
 	"coord": [139.778758, 35.690423],
 	"title": {
 		"ja": "小伝馬町",
@@ -12594,7 +12719,8 @@
 		"fr": "Kodemmacho",
 		"ko": "고덴마초",
 		"zh-Hans": "小传马町",
-		"zh-Hant": "小傳馬町"
+		"zh-Hant": "小傳馬町",
+		"ja-Hrkt": "こでんまちょう"
 	},
 	"exit": [
 		"TokyoMetro.Kodemmacho.1",
@@ -12608,6 +12734,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Akihabara",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H16",
 	"coord": [139.775529, 35.697965],
 	"title": {
 		"ja": "秋葉原",
@@ -12615,7 +12742,8 @@
 		"fr": "Akihabara",
 		"ko": "아키하바라",
 		"zh-Hans": "秋叶原",
-		"zh-Hant": "秋葉原"
+		"zh-Hant": "秋葉原",
+		"ja-Hrkt": "あきはばら"
 	},
 	"exit": [
 		"TokyoMetro.Akihabara.1",
@@ -12629,6 +12757,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.NakaOkachimachi",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H17",
 	"coord": [139.77619, 35.706655],
 	"title": {
 		"ja": "仲御徒町",
@@ -12636,7 +12765,8 @@
 		"fr": "Naka-okachimachi",
 		"ko": "나카오카치마치",
 		"zh-Hans": "仲御徒町",
-		"zh-Hant": "仲御徒町"
+		"zh-Hant": "仲御徒町",
+		"ja-Hrkt": "なかおかちまち"
 	},
 	"exit": [
 		"TokyoMetro.NakaOkachimachi.1",
@@ -12649,6 +12779,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Ueno",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H18",
 	"coord": [139.777061, 35.711558],
 	"title": {
 		"ja": "上野",
@@ -12656,7 +12787,8 @@
 		"fr": "Ueno",
 		"ko": "우에노",
 		"zh-Hans": "上野",
-		"zh-Hant": "上野"
+		"zh-Hant": "上野",
+		"ja-Hrkt": "うえの"
 	},
 	"exit": [
 		"TokyoMetro.Ueno.1",
@@ -12669,6 +12801,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Iriya",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H19",
 	"coord": [139.784466, 35.720565],
 	"title": {
 		"ja": "入谷",
@@ -12677,7 +12810,8 @@
 		"ko": "이리야",
 		"zh-Hans": "入谷",
 		"zh-Hant": "入谷",
-		"ja-Wiki": "入谷駅 (東京都)"
+		"ja-Wiki": "入谷駅 (東京都)",
+		"ja-Hrkt": "いりや"
 	},
 	"utitle": {
 		"ja": "入谷 (東京)",
@@ -12698,6 +12832,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.Minowa",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H20",
 	"coord": [139.7913004, 35.7295502],
 	"title": {
 		"ja": "三ノ輪",
@@ -12705,7 +12840,8 @@
 		"fr": "Minowa",
 		"ko": "미노와",
 		"zh-Hans": "三之轮",
-		"zh-Hant": "三之輪"
+		"zh-Hant": "三之輪",
+		"ja-Hrkt": "みのわ"
 	},
 	"exit": [
 		"TokyoMetro.Minowa.1a",
@@ -12719,6 +12855,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.MinamiSenju",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H21",
 	"coord": [139.79878, 35.73231],
 	"title": {
 		"ja": "南千住",
@@ -12726,7 +12863,8 @@
 		"fr": "Minami-senju",
 		"ko": "미나미센주",
 		"zh-Hans": "南千住",
-		"zh-Hant": "南千住"
+		"zh-Hant": "南千住",
+		"ja-Hrkt": "みなみせんじゅ"
 	},
 	"exit": [
 		"TokyoMetro.MinamiSenju.South",
@@ -12735,6 +12873,7 @@
 }, {
 	"id": "TokyoMetro.Hibiya.KitaSenju",
 	"railway": "TokyoMetro.Hibiya",
+	"code": "H22",
 	"coord": [139.80556, 35.74981],
 	"title": {
 		"ja": "北千住",
@@ -12742,7 +12881,8 @@
 		"fr": "Kita-senju",
 		"ko": "기타센주",
 		"zh-Hans": "北千住",
-		"zh-Hant": "北千住"
+		"zh-Hant": "北千住",
+		"ja-Hrkt": "きたせんじゅ"
 	},
 	"exit": [
 		"TokyoMetro.KitaSenju.East"
@@ -12765,6 +12905,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Nakano",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T01",
 	"coord": [139.66594, 35.70573],
 	"title": {
 		"ja": "中野",
@@ -12773,7 +12914,8 @@
 		"ko": "나카노",
 		"zh-Hans": "中野",
 		"zh-Hant": "中野",
-		"ja-Wiki": "中野駅 (東京都)"
+		"ja-Wiki": "中野駅 (東京都)",
+		"ja-Hrkt": "なかの"
 	},
 	"utitle": {
 		"ja": "中野 (東京)",
@@ -12786,6 +12928,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Ochiai",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T02",
 	"coord": [139.685965, 35.710635],
 	"title": {
 		"ja": "落合",
@@ -12794,7 +12937,8 @@
 		"ko": "오치아이",
 		"zh-Hans": "落合",
 		"zh-Hant": "落合",
-		"ja-Wiki": "落合駅 (東京都)"
+		"ja-Wiki": "落合駅 (東京都)",
+		"ja-Hrkt": "おちあい"
 	},
 	"exit": [
 		"TokyoMetro.Ochiai.1",
@@ -12808,6 +12952,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Takadanobaba",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T03",
 	"coord": [139.705045, 35.71328],
 	"title": {
 		"ja": "高田馬場",
@@ -12815,7 +12960,8 @@
 		"fr": "Takadanobaba",
 		"ko": "다카다노바바",
 		"zh-Hans": "高田马场",
-		"zh-Hant": "高田馬場"
+		"zh-Hant": "高田馬場",
+		"ja-Hrkt": "たかだのばば"
 	},
 	"exit": [
 		"TokyoMetro.Takadanobaba.1",
@@ -12831,6 +12977,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Waseda",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T04",
 	"coord": [139.721191, 35.7058028],
 	"title": {
 		"ja": "早稲田",
@@ -12838,7 +12985,8 @@
 		"fr": "Waseda",
 		"ko": "와세다",
 		"zh-Hans": "早稻田",
-		"zh-Hant": "早稻田"
+		"zh-Hant": "早稻田",
+		"ja-Hrkt": "わせだ"
 	},
 	"utitle": {
 		"ja": "早稲田 (東京メトロ)",
@@ -12860,6 +13008,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Kagurazaka",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T05",
 	"coord": [139.73452, 35.703865],
 	"title": {
 		"ja": "神楽坂",
@@ -12867,7 +13016,8 @@
 		"fr": "Kagurazaka",
 		"ko": "가구라자카",
 		"zh-Hans": "神乐坂",
-		"zh-Hant": "神樂坂"
+		"zh-Hant": "神樂坂",
+		"ja-Hrkt": "かぐらざか"
 	},
 	"exit": [
 		"TokyoMetro.Kagurazaka.1a",
@@ -12878,6 +13028,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Iidabashi",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T06",
 	"coord": [139.746521, 35.701403],
 	"title": {
 		"ja": "飯田橋",
@@ -12885,7 +13036,8 @@
 		"fr": "Iidabashi",
 		"ko": "이다바시",
 		"zh-Hans": "饭田桥",
-		"zh-Hant": "飯田橋"
+		"zh-Hant": "飯田橋",
+		"ja-Hrkt": "いいだばし"
 	},
 	"exit": [
 		"TokyoMetro.Iidabashi.A1",
@@ -12898,6 +13050,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Kudanshita",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T07",
 	"coord": [139.751265, 35.696091],
 	"title": {
 		"ja": "九段下",
@@ -12905,7 +13058,8 @@
 		"fr": "Kudanshita",
 		"ko": "구단시타",
 		"zh-Hans": "九段下",
-		"zh-Hant": "九段下"
+		"zh-Hant": "九段下",
+		"ja-Hrkt": "くだんした"
 	},
 	"exit": [
 		"TokyoMetro.Kudanshita.7"
@@ -12914,6 +13068,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Takebashi",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T08",
 	"coord": [139.75767, 35.69044],
 	"title": {
 		"ja": "竹橋",
@@ -12921,7 +13076,8 @@
 		"fr": "Takebashi",
 		"ko": "다케바시",
 		"zh-Hans": "竹桥",
-		"zh-Hant": "竹橋"
+		"zh-Hant": "竹橋",
+		"ja-Hrkt": "たけばし"
 	},
 	"exit": [
 		"TokyoMetro.Takebashi.1a",
@@ -12936,6 +13092,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Otemachi",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T09",
 	"coord": [139.76603, 35.684697],
 	"title": {
 		"ja": "大手町",
@@ -12944,7 +13101,8 @@
 		"ko": "오테마치",
 		"zh-Hans": "大手町",
 		"zh-Hant": "大手町",
-		"ja-Wiki": "大手町駅 (東京都)"
+		"ja-Wiki": "大手町駅 (東京都)",
+		"ja-Hrkt": "おおてまち"
 	},
 	"exit": [
 		"TokyoMetro.Otemachi.B1a",
@@ -12967,6 +13125,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Nihombashi",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T10",
 	"coord": [139.774101, 35.682376],
 	"title": {
 		"ja": "日本橋",
@@ -12975,7 +13134,8 @@
 		"ko": "니혼바시",
 		"zh-Hans": "日本桥",
 		"zh-Hant": "日本橋",
-		"ja-Wiki": "日本橋駅 (東京都)"
+		"ja-Wiki": "日本橋駅 (東京都)",
+		"ja-Hrkt": "にほんばし"
 	},
 	"exit": [
 		"TokyoMetro.Nihombashi.C1",
@@ -12987,6 +13147,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Kayabacho",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T11",
 	"coord": [139.77927, 35.680346],
 	"title": {
 		"ja": "茅場町",
@@ -12994,7 +13155,8 @@
 		"fr": "Kayabacho",
 		"ko": "가야바초",
 		"zh-Hans": "茅场町",
-		"zh-Hant": "茅場町"
+		"zh-Hant": "茅場町",
+		"ja-Hrkt": "かやばちょう"
 	},
 	"exit": [
 		"TokyoMetro.Kayabacho.6",
@@ -13009,6 +13171,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.MonzenNakacho",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T12",
 	"coord": [139.796099, 35.671892],
 	"title": {
 		"ja": "門前仲町",
@@ -13016,7 +13179,8 @@
 		"fr": "Monzen-nakacho",
 		"ko": "몬젠나카초",
 		"zh-Hans": "门前仲町",
-		"zh-Hant": "門前仲町"
+		"zh-Hant": "門前仲町",
+		"ja-Hrkt": "もんぜんなかちょう"
 	},
 	"exit": [
 		"TokyoMetro.MonzenNakacho.1",
@@ -13028,6 +13192,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Kiba",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T13",
 	"coord": [139.807115, 35.669356],
 	"title": {
 		"ja": "木場",
@@ -13035,7 +13200,8 @@
 		"fr": "Kiba",
 		"ko": "기바",
 		"zh-Hans": "木场",
-		"zh-Hant": "木場"
+		"zh-Hant": "木場",
+		"ja-Hrkt": "きば"
 	},
 	"exit": [
 		"TokyoMetro.Kiba.1",
@@ -13048,6 +13214,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Toyocho",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T14",
 	"coord": [139.81768, 35.66959],
 	"title": {
 		"ja": "東陽町",
@@ -13055,7 +13222,8 @@
 		"fr": "Toyocho",
 		"ko": "도요초",
 		"zh-Hans": "东阳町",
-		"zh-Hant": "東陽町"
+		"zh-Hant": "東陽町",
+		"ja-Hrkt": "とうようちょう"
 	},
 	"exit": [
 		"TokyoMetro.Toyocho.1",
@@ -13068,6 +13236,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.MinamiSunamachi",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T15",
 	"coord": [139.831695, 35.668415],
 	"title": {
 		"ja": "南砂町",
@@ -13075,7 +13244,8 @@
 		"fr": "Minami-sunamachi",
 		"ko": "미나미스나마치",
 		"zh-Hans": "南砂町",
-		"zh-Hant": "南砂町"
+		"zh-Hant": "南砂町",
+		"ja-Hrkt": "みなみすなまち"
 	},
 	"exit": [
 		"TokyoMetro.MinamiSunamachi.1",
@@ -13090,6 +13260,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.NishiKasai",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T16",
 	"coord": [139.8596, 35.664562],
 	"title": {
 		"ja": "西葛西",
@@ -13097,7 +13268,8 @@
 		"fr": "Nishi-kasai",
 		"ko": "니시카사이",
 		"zh-Hans": "西葛西",
-		"zh-Hant": "西葛西"
+		"zh-Hant": "西葛西",
+		"ja-Hrkt": "にしかさい"
 	},
 	"exit": [
 		"TokyoMetro.NishiKasai.South",
@@ -13106,6 +13278,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Kasai",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T17",
 	"coord": [139.87253, 35.663616],
 	"title": {
 		"ja": "葛西",
@@ -13113,7 +13286,8 @@
 		"fr": "Kasai",
 		"ko": "가사이",
 		"zh-Hans": "葛西",
-		"zh-Hant": "葛西"
+		"zh-Hant": "葛西",
+		"ja-Hrkt": "かさい"
 	},
 	"exit": [
 		"TokyoMetro.Kasai.West",
@@ -13124,6 +13298,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Urayasu",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T18",
 	"coord": [139.893236, 35.665903],
 	"title": {
 		"ja": "浦安",
@@ -13132,7 +13307,8 @@
 		"ko": "우라야스",
 		"zh-Hans": "浦安",
 		"zh-Hant": "浦安",
-		"ja-Wiki": "浦安駅 (千葉県)"
+		"ja-Wiki": "浦安駅 (千葉県)",
+		"ja-Hrkt": "うらやす"
 	},
 	"exit": [
 		"TokyoMetro.Urayasu.East",
@@ -13143,6 +13319,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.MinamiGyotoku",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T19",
 	"coord": [139.902276, 35.672729],
 	"title": {
 		"ja": "南行徳",
@@ -13150,7 +13327,8 @@
 		"fr": "Minami-gyotoku",
 		"ko": "미나미교토쿠",
 		"zh-Hans": "南行徳",
-		"zh-Hant": "南行德"
+		"zh-Hant": "南行德",
+		"ja-Hrkt": "みなみぎょうとく"
 	},
 	"exit": [
 		"TokyoMetro.MinamiGyotoku.South",
@@ -13159,6 +13337,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Gyotoku",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T20",
 	"coord": [139.914185, 35.68262],
 	"title": {
 		"ja": "行徳",
@@ -13166,7 +13345,8 @@
 		"fr": "Gyotoku",
 		"ko": "교토쿠",
 		"zh-Hans": "行徳",
-		"zh-Hant": "行德"
+		"zh-Hant": "行德",
+		"ja-Hrkt": "ぎょうとく"
 	},
 	"exit": [
 		"TokyoMetro.Gyotoku.1"
@@ -13174,6 +13354,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.Myoden",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T21",
 	"coord": [139.924286, 35.691014],
 	"title": {
 		"ja": "妙典",
@@ -13181,7 +13362,8 @@
 		"fr": "Myoden",
 		"ko": "묘덴",
 		"zh-Hans": "妙典",
-		"zh-Hant": "妙典"
+		"zh-Hant": "妙典",
+		"ja-Hrkt": "みょうでん"
 	},
 	"exit": [
 		"TokyoMetro.Myoden.East",
@@ -13191,6 +13373,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.BarakiNakayama",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T22",
 	"coord": [139.941915, 35.7033],
 	"title": {
 		"ja": "原木中山",
@@ -13198,7 +13381,8 @@
 		"fr": "Baraki-nakayama",
 		"ko": "바라키나카야마",
 		"zh-Hans": "原木中山",
-		"zh-Hant": "原木中山"
+		"zh-Hant": "原木中山",
+		"ja-Hrkt": "ばらきなかやま"
 	},
 	"exit": [
 		"TokyoMetro.BarakiNakayama.East",
@@ -13209,6 +13393,7 @@
 }, {
 	"id": "TokyoMetro.Tozai.NishiFunabashi",
 	"railway": "TokyoMetro.Tozai",
+	"code": "T23",
 	"coord": [139.95925, 35.70713],
 	"title": {
 		"ja": "西船橋",
@@ -13216,7 +13401,8 @@
 		"fr": "Nishi-funabashi",
 		"ko": "니시후나바시",
 		"zh-Hans": "西船桥",
-		"zh-Hant": "西船橋"
+		"zh-Hant": "西船橋",
+		"ja-Hrkt": "にしふなばし"
 	},
 	"exit": [
 		"TokyoMetro.NishiFunabashi.South",
@@ -13255,6 +13441,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.YoyogiUehara",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C01",
 	"coord": [139.67968, 35.66906],
 	"title": {
 		"ja": "代々木上原",
@@ -13262,7 +13449,8 @@
 		"fr": "Yoyogi-uehara",
 		"ko": "요요기우에하라",
 		"zh-Hans": "代々木上原",
-		"zh-Hant": "代代木上原"
+		"zh-Hant": "代代木上原",
+		"ja-Hrkt": "よよぎうえはら"
 	},
 	"exit": [
 		"TokyoMetro.YoyogiUehara.East",
@@ -13275,6 +13463,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.YoyogiKoen",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C02",
 	"coord": [139.689791, 35.669104],
 	"title": {
 		"ja": "代々木公園",
@@ -13282,7 +13471,8 @@
 		"fr": "Yoyogi-koen",
 		"ko": "요요기코엔",
 		"zh-Hans": "代々木公园",
-		"zh-Hant": "代代木公園"
+		"zh-Hant": "代代木公園",
+		"ja-Hrkt": "よよぎこうえん"
 	},
 	"exit": [
 		"TokyoMetro.YoyogiKoen.1",
@@ -13295,6 +13485,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.MeijiJingumae",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C03",
 	"coord": [139.703944, 35.669123],
 	"title": {
 		"ja": "明治神宮前〈原宿〉",
@@ -13303,7 +13494,8 @@
 		"ko": "메이지진구마에<하라주쿠>",
 		"zh-Hans": "明治神宫前<原宿>",
 		"zh-Hant": "明治神宮前<原宿>",
-		"ja-Wiki": "明治神宮前駅"
+		"ja-Wiki": "明治神宮前駅",
+		"ja-Hrkt": "めいじじんぐうまえ<はらじゅく>"
 	},
 	"exit": [
 		"TokyoMetro.MeijiJingumae.1",
@@ -13319,6 +13511,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.OmoteSando",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C04",
 	"coord": [139.711346, 35.665652],
 	"title": {
 		"ja": "表参道",
@@ -13326,7 +13519,8 @@
 		"fr": "Omote-sando",
 		"ko": "오모테산도",
 		"zh-Hans": "表参道",
-		"zh-Hant": "表參道"
+		"zh-Hant": "表參道",
+		"ja-Hrkt": "おもてさんどう"
 	},
 	"exit": [
 		"TokyoMetro.OmoteSando.A1",
@@ -13340,6 +13534,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Nogizaka",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C05",
 	"coord": [139.726229, 35.666592],
 	"title": {
 		"ja": "乃木坂",
@@ -13347,7 +13542,8 @@
 		"fr": "Nogizaka",
 		"ko": "노기자카",
 		"zh-Hans": "乃木坂",
-		"zh-Hant": "乃木坂"
+		"zh-Hant": "乃木坂",
+		"ja-Hrkt": "のぎざか"
 	},
 	"exit": [
 		"TokyoMetro.Nogizaka.1",
@@ -13360,6 +13556,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Akasaka",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C06",
 	"coord": [139.736413, 35.672104],
 	"title": {
 		"ja": "赤坂",
@@ -13368,7 +13565,8 @@
 		"ko": "아카사카",
 		"zh-Hans": "赤坂",
 		"zh-Hant": "赤坂",
-		"ja-Wiki": "赤坂駅 (東京都)"
+		"ja-Wiki": "赤坂駅 (東京都)",
+		"ja-Hrkt": "あかさか"
 	},
 	"utitle": {
 		"ja": "赤坂 (東京)",
@@ -13394,6 +13592,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.KokkaiGijidomae",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C07",
 	"coord": [139.743188, 35.673566],
 	"title": {
 		"ja": "国会議事堂前",
@@ -13401,7 +13600,8 @@
 		"fr": "Kokkai-gijidomae",
 		"ko": "곳카이기지도마에",
 		"zh-Hans": "国会议事堂前",
-		"zh-Hant": "國會議事堂前"
+		"zh-Hant": "國會議事堂前",
+		"ja-Hrkt": "こっかいぎじどうまえ"
 	},
 	"exit": [
 		"TokyoMetro.KokkaiGijidomae.3",
@@ -13411,6 +13611,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Kasumigaseki",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C08",
 	"coord": [139.75177, 35.67256],
 	"title": {
 		"ja": "霞ケ関",
@@ -13419,7 +13620,8 @@
 		"ko": "가스미가세키",
 		"zh-Hans": "霞关",
 		"zh-Hant": "霞關",
-		"ja-Wiki": "霞ケ関駅 (東京都)"
+		"ja-Wiki": "霞ケ関駅 (東京都)",
+		"ja-Hrkt": "かすみがせき"
 	},
 	"utitle": {
 		"ja": "霞ケ関 (東京)",
@@ -13439,6 +13641,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Hibiya",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C09",
 	"coord": [139.758765, 35.673955],
 	"title": {
 		"ja": "日比谷",
@@ -13446,7 +13649,8 @@
 		"fr": "Hibiya",
 		"ko": "히비야",
 		"zh-Hans": "日比谷",
-		"zh-Hant": "日比谷"
+		"zh-Hant": "日比谷",
+		"ja-Hrkt": "ひびや"
 	},
 	"exit": [
 		"TokyoMetro.Hibiya.A10",
@@ -13459,6 +13663,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Nijubashimae",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C10",
 	"coord": [139.76178, 35.680505],
 	"title": {
 		"ja": "二重橋前〈丸の内〉",
@@ -13467,7 +13672,8 @@
 		"ko": "니주바시마에<마루노우치선>",
 		"zh-Hans": "二重桥前<丸之内>",
 		"zh-Hant": "二重橋前<丸之內>",
-		"ja-Wiki": "二重橋前駅"
+		"ja-Wiki": "二重橋前駅",
+		"ja-Hrkt": "にじゅうばしまえ<まるのうち>"
 	},
 	"exit": [
 		"TokyoMetro.Nijubashimae.1",
@@ -13484,6 +13690,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Otemachi",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C11",
 	"coord": [139.763285, 35.68525],
 	"title": {
 		"ja": "大手町",
@@ -13492,7 +13699,8 @@
 		"ko": "오테마치",
 		"zh-Hans": "大手町",
 		"zh-Hant": "大手町",
-		"ja-Wiki": "大手町駅 (東京都)"
+		"ja-Wiki": "大手町駅 (東京都)",
+		"ja-Hrkt": "おおてまち"
 	},
 	"exit": [
 		"TokyoMetro.Otemachi.C1",
@@ -13518,6 +13726,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.ShinOchanomizu",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C12",
 	"coord": [139.76545, 35.696925],
 	"title": {
 		"ja": "新御茶ノ水",
@@ -13525,7 +13734,8 @@
 		"fr": "Shin-ochanomizu",
 		"ko": "신오차노미즈",
 		"zh-Hans": "新御茶之水",
-		"zh-Hant": "新御茶之水"
+		"zh-Hant": "新御茶之水",
+		"ja-Hrkt": "しんおちゃのみず"
 	},
 	"exit": [
 		"TokyoMetro.ShinOchanomizu.B1",
@@ -13543,6 +13753,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Yushima",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C13",
 	"coord": [139.769981, 35.706805],
 	"title": {
 		"ja": "湯島",
@@ -13550,7 +13761,8 @@
 		"fr": "Yushima",
 		"ko": "유시마",
 		"zh-Hans": "汤岛",
-		"zh-Hant": "湯島"
+		"zh-Hant": "湯島",
+		"ja-Hrkt": "ゆしま"
 	},
 	"exit": [
 		"TokyoMetro.Yushima.1",
@@ -13565,6 +13777,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Nezu",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C14",
 	"coord": [139.76575, 35.717325],
 	"title": {
 		"ja": "根津",
@@ -13572,7 +13785,8 @@
 		"fr": "Nezu",
 		"ko": "네즈",
 		"zh-Hans": "根津",
-		"zh-Hant": "根津"
+		"zh-Hant": "根津",
+		"ja-Hrkt": "ねづ"
 	},
 	"exit": [
 		"TokyoMetro.Nezu.1",
@@ -13583,6 +13797,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Sendagi",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C15",
 	"coord": [139.763303, 35.725746],
 	"title": {
 		"ja": "千駄木",
@@ -13590,7 +13805,8 @@
 		"fr": "Sendagi",
 		"ko": "센다기",
 		"zh-Hans": "千驮木",
-		"zh-Hant": "千馱木"
+		"zh-Hant": "千馱木",
+		"ja-Hrkt": "せんだぎ"
 	},
 	"exit": [
 		"TokyoMetro.Sendagi.1",
@@ -13601,6 +13817,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.NishiNippori",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C16",
 	"coord": [139.76689, 35.732355],
 	"title": {
 		"ja": "西日暮里",
@@ -13608,7 +13825,8 @@
 		"fr": "Nishi-nippori",
 		"ko": "니시닛포리",
 		"zh-Hans": "西日暮里",
-		"zh-Hant": "西日暮里"
+		"zh-Hant": "西日暮里",
+		"ja-Hrkt": "にしにっぽり"
 	},
 	"exit": [
 		"TokyoMetro.NishiNippori.1",
@@ -13620,6 +13838,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Machiya",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C17",
 	"coord": [139.780047, 35.742068],
 	"title": {
 		"ja": "町屋",
@@ -13627,7 +13846,8 @@
 		"fr": "Machiya",
 		"ko": "마치야",
 		"zh-Hans": "町屋",
-		"zh-Hant": "町屋"
+		"zh-Hant": "町屋",
+		"ja-Hrkt": "まちや"
 	},
 	"exit": [
 		"TokyoMetro.Machiya.0",
@@ -13640,6 +13860,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.KitaSenju",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C18",
 	"coord": [139.804403, 35.7492],
 	"title": {
 		"ja": "北千住",
@@ -13647,7 +13868,8 @@
 		"fr": "Kita-senju",
 		"ko": "기타센주",
 		"zh-Hans": "北千住",
-		"zh-Hant": "北千住"
+		"zh-Hant": "北千住",
+		"ja-Hrkt": "きたせんじゅ"
 	},
 	"exit": [
 		"TokyoMetro.KitaSenju.1",
@@ -13661,6 +13883,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.Ayase",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C19",
 	"coord": [139.82481, 35.76212],
 	"title": {
 		"ja": "綾瀬",
@@ -13668,7 +13891,8 @@
 		"fr": "Ayase",
 		"ko": "아야세",
 		"zh-Hans": "绫瀬",
-		"zh-Hant": "綾瀨"
+		"zh-Hant": "綾瀨",
+		"ja-Hrkt": "あやせ"
 	},
 	"exit": [
 		"TokyoMetro.Ayase.East",
@@ -13677,6 +13901,7 @@
 }, {
 	"id": "TokyoMetro.Chiyoda.KitaAyase",
 	"railway": "TokyoMetro.Chiyoda",
+	"code": "C20",
 	"coord": [139.832095, 35.77689],
 	"title": {
 		"ja": "北綾瀬",
@@ -13684,7 +13909,8 @@
 		"fr": "Kita-ayase",
 		"ko": "기타아야세",
 		"zh-Hans": "北绫瀬",
-		"zh-Hant": "北綾瀨"
+		"zh-Hant": "北綾瀨",
+		"ja-Hrkt": "きたあやせ"
 	},
 	"exit": [
 		"TokyoMetro.KitaAyase.1",
@@ -13698,6 +13924,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Wakoshi",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y01",
 	"coord": [139.61286, 35.78835],
 	"title": {
 		"ja": "和光市",
@@ -13705,7 +13932,8 @@
 		"fr": "Wakoshi",
 		"ko": "와코시",
 		"zh-Hans": "和光市",
-		"zh-Hant": "和光市"
+		"zh-Hant": "和光市",
+		"ja-Hrkt": "わこうし"
 	},
 	"exit": [
 		"TokyoMetro.Wakoshi.South",
@@ -13714,6 +13942,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.ChikatetsuNarimasu",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y02",
 	"coord": [139.63117, 35.77674],
 	"title": {
 		"ja": "地下鉄成増",
@@ -13721,7 +13950,8 @@
 		"fr": "Chikatetsu-narimasu",
 		"ko": "지카테쓰나리마스",
 		"zh-Hans": "地铁成増",
-		"zh-Hant": "地鐵成增"
+		"zh-Hant": "地鐵成增",
+		"ja-Hrkt": "ちかてつなります"
 	},
 	"exit": [
 		"TokyoMetro.ChikatetsuNarimasu.1",
@@ -13735,6 +13965,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.ChikatetsuAkatsuka",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y03",
 	"coord": [139.644, 35.769981],
 	"title": {
 		"ja": "地下鉄赤塚",
@@ -13742,7 +13973,8 @@
 		"fr": "Chikatetsu-akatsuka",
 		"ko": "지카테쓰아카쓰카",
 		"zh-Hans": "地铁赤冢",
-		"zh-Hant": "地鐵赤塚"
+		"zh-Hant": "地鐵赤塚",
+		"ja-Hrkt": "ちかてつあかつか"
 	},
 	"exit": [
 		"TokyoMetro.ChikatetsuAkatsuka.1",
@@ -13754,6 +13986,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Heiwadai",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y04",
 	"coord": [139.6543, 35.757555],
 	"title": {
 		"ja": "平和台",
@@ -13762,7 +13995,8 @@
 		"ko": "헤이와다이",
 		"zh-Hans": "平和台",
 		"zh-Hant": "平和台",
-		"ja-Wiki": "平和台駅 (東京都)"
+		"ja-Wiki": "平和台駅 (東京都)",
+		"ja-Hrkt": "へいわだい"
 	},
 	"utitle": {
 		"ja": "平和台 (東京)",
@@ -13783,6 +14017,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Hikawadai",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y05",
 	"coord": [139.66547, 35.74962],
 	"title": {
 		"ja": "氷川台",
@@ -13790,7 +14025,8 @@
 		"fr": "Hikawadai",
 		"ko": "히카와다이",
 		"zh-Hans": "冰川台",
-		"zh-Hant": "冰川台"
+		"zh-Hant": "冰川台",
+		"ja-Hrkt": "ひかわだい"
 	},
 	"exit": [
 		"TokyoMetro.Hikawadai.1",
@@ -13801,6 +14037,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.KotakeMukaihara",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y06",
 	"coord": [139.67952, 35.743395],
 	"title": {
 		"ja": "小竹向原",
@@ -13808,7 +14045,8 @@
 		"fr": "Kotake-mukaihara",
 		"ko": "고타케무카이하라",
 		"zh-Hans": "小竹向原",
-		"zh-Hant": "小竹向原"
+		"zh-Hant": "小竹向原",
+		"ja-Hrkt": "こたけむかいはら"
 	},
 	"exit": [
 		"TokyoMetro.KotakeMukaihara.1",
@@ -13821,6 +14059,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Senkawa",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y07",
 	"coord": [139.6894, 35.738175],
 	"title": {
 		"ja": "千川",
@@ -13828,7 +14067,8 @@
 		"fr": "Senkawa",
 		"ko": "센카와",
 		"zh-Hans": "千川",
-		"zh-Hant": "千川"
+		"zh-Hant": "千川",
+		"ja-Hrkt": "せんかわ"
 	},
 	"exit": [
 		"TokyoMetro.Senkawa.1",
@@ -13841,6 +14081,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Kanamecho",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y08",
 	"coord": [139.69848, 35.733215],
 	"title": {
 		"ja": "要町",
@@ -13848,7 +14089,8 @@
 		"fr": "Kanamecho",
 		"ko": "가나메초",
 		"zh-Hans": "要町",
-		"zh-Hant": "要町"
+		"zh-Hant": "要町",
+		"ja-Hrkt": "かなめちょう"
 	},
 	"exit": [
 		"TokyoMetro.Kanamecho.1",
@@ -13863,6 +14105,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Ikebukuro",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y09",
 	"coord": [139.710885, 35.729185],
 	"title": {
 		"ja": "池袋",
@@ -13870,7 +14113,8 @@
 		"fr": "Ikebukuro",
 		"ko": "이케부쿠로",
 		"zh-Hans": "池袋",
-		"zh-Hant": "池袋"
+		"zh-Hant": "池袋",
+		"ja-Hrkt": "いけぶくろ"
 	},
 	"exit": [
 		"TokyoMetro.Ikebukuro.1a",
@@ -13889,6 +14133,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.HigashiIkebukuro",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y10",
 	"coord": [139.718865, 35.72595],
 	"title": {
 		"ja": "東池袋",
@@ -13896,7 +14141,8 @@
 		"fr": "Higashi-ikebukuro",
 		"ko": "히가시이케부쿠로",
 		"zh-Hans": "东池袋",
-		"zh-Hant": "東池袋"
+		"zh-Hant": "東池袋",
+		"ja-Hrkt": "ひがしいけぶくろ"
 	},
 	"exit": [
 		"TokyoMetro.HigashiIkebukuro.1",
@@ -13912,6 +14158,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Gokokuji",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y11",
 	"coord": [139.72745, 35.71918],
 	"title": {
 		"ja": "護国寺",
@@ -13919,7 +14166,8 @@
 		"fr": "Gokokuji",
 		"ko": "고코쿠지",
 		"zh-Hans": "護国寺",
-		"zh-Hant": "護國寺"
+		"zh-Hant": "護國寺",
+		"ja-Hrkt": "ごこくじ"
 	},
 	"exit": [
 		"TokyoMetro.Gokokuji.1",
@@ -13934,6 +14182,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Edogawabashi",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y12",
 	"coord": [139.7335743, 35.7095373],
 	"title": {
 		"ja": "江戸川橋",
@@ -13941,7 +14190,8 @@
 		"fr": "Edogawabashi",
 		"ko": "에도가와바시",
 		"zh-Hans": "江户川桥",
-		"zh-Hant": "江戶川橋"
+		"zh-Hant": "江戶川橋",
+		"ja-Hrkt": "えどがわばし"
 	},
 	"exit": [
 		"TokyoMetro.Edogawabashi.1a",
@@ -13955,6 +14205,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Iidabashi",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y13",
 	"coord": [139.743207, 35.701342],
 	"title": {
 		"ja": "飯田橋",
@@ -13962,7 +14213,8 @@
 		"fr": "Iidabashi",
 		"ko": "이다바시",
 		"zh-Hans": "饭田桥",
-		"zh-Hant": "飯田橋"
+		"zh-Hant": "飯田橋",
+		"ja-Hrkt": "いいだばし"
 	},
 	"exit": [
 		"TokyoMetro.Iidabashi.B1",
@@ -13978,6 +14230,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Ichigaya",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y14",
 	"coord": [139.736891, 35.692576],
 	"title": {
 		"ja": "市ケ谷",
@@ -13985,7 +14238,8 @@
 		"fr": "Ichigaya",
 		"ko": "이치가야",
 		"zh-Hans": "市谷",
-		"zh-Hant": "市谷"
+		"zh-Hant": "市谷",
+		"ja-Hrkt": "いちがや"
 	},
 	"exit": [
 		"TokyoMetro.Ichigaya.1",
@@ -13997,6 +14251,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Kojimachi",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y15",
 	"coord": [139.73735, 35.684785],
 	"title": {
 		"ja": "麴町",
@@ -14005,7 +14260,8 @@
 		"ko": "고지마치",
 		"zh-Hans": "麴町",
 		"zh-Hant": "麴町",
-		"ja-Wiki": "麹町駅"
+		"ja-Wiki": "麹町駅",
+		"ja-Hrkt": "こうじまち"
 	},
 	"exit": [
 		"TokyoMetro.Kojimachi.1",
@@ -14021,6 +14277,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Nagatacho",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y16",
 	"coord": [139.741773, 35.677895],
 	"title": {
 		"ja": "永田町",
@@ -14028,7 +14285,8 @@
 		"fr": "Nagatacho",
 		"ko": "나가타초",
 		"zh-Hans": "永田町",
-		"zh-Hant": "永田町"
+		"zh-Hant": "永田町",
+		"ja-Hrkt": "ながたちょう"
 	},
 	"exit": [
 		"TokyoMetro.Nagatacho.1",
@@ -14042,6 +14300,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Sakuradamon",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y17",
 	"coord": [139.751886, 35.677459],
 	"title": {
 		"ja": "桜田門",
@@ -14049,7 +14308,8 @@
 		"fr": "Sakuradamon",
 		"ko": "사쿠라다몬",
 		"zh-Hans": "桜田门",
-		"zh-Hant": "櫻田門"
+		"zh-Hant": "櫻田門",
+		"ja-Hrkt": "さくらだもん"
 	},
 	"exit": [
 		"TokyoMetro.Sakuradamon.1",
@@ -14063,6 +14323,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Yurakucho",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y18",
 	"coord": [139.762286, 35.675973],
 	"title": {
 		"ja": "有楽町",
@@ -14070,7 +14331,8 @@
 		"fr": "Yurakucho",
 		"ko": "유라쿠초",
 		"zh-Hans": "有乐町",
-		"zh-Hant": "有樂町"
+		"zh-Hant": "有樂町",
+		"ja-Hrkt": "ゆうらくちょう"
 	},
 	"exit": [
 		"TokyoMetro.Yurakucho.D1",
@@ -14087,6 +14349,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.GinzaItchome",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y19",
 	"coord": [139.766786, 35.674519],
 	"title": {
 		"ja": "銀座一丁目",
@@ -14094,7 +14357,8 @@
 		"fr": "Ginza-itchome",
 		"ko": "긴자잇초메",
 		"zh-Hans": "银座一丁目",
-		"zh-Hant": "銀座一丁目"
+		"zh-Hant": "銀座一丁目",
+		"ja-Hrkt": "ぎんざいっちょうめ"
 	},
 	"exit": [
 		"TokyoMetro.GinzaItchome.1",
@@ -14113,6 +14377,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Shintomicho",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y20",
 	"coord": [139.773594, 35.670529],
 	"title": {
 		"ja": "新富町",
@@ -14120,7 +14385,8 @@
 		"fr": "Shintomicho",
 		"ko": "신토미초",
 		"zh-Hans": "新富町",
-		"zh-Hant": "新富町"
+		"zh-Hant": "新富町",
+		"ja-Hrkt": "しんとみちょう"
 	},
 	"exit": [
 		"TokyoMetro.Shintomicho.1",
@@ -14136,6 +14402,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Tsukishima",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y21",
 	"coord": [139.784405, 35.664711],
 	"title": {
 		"ja": "月島",
@@ -14143,7 +14410,8 @@
 		"fr": "Tsukishima",
 		"ko": "쓰키시마",
 		"zh-Hans": "月岛",
-		"zh-Hant": "月島"
+		"zh-Hant": "月島",
+		"ja-Hrkt": "つきしま"
 	},
 	"exit": [
 		"TokyoMetro.Tsukishima.1",
@@ -14159,6 +14427,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Toyosu",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y22",
 	"coord": [139.795994, 35.655153],
 	"title": {
 		"ja": "豊洲",
@@ -14166,7 +14435,8 @@
 		"fr": "Toyosu",
 		"ko": "도요스",
 		"zh-Hans": "丰洲",
-		"zh-Hant": "豐洲"
+		"zh-Hant": "豐洲",
+		"ja-Hrkt": "とよす"
 	},
 	"exit": [
 		"TokyoMetro.Toyosu.1a",
@@ -14185,6 +14455,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.Tatsumi",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y23",
 	"coord": [139.81033, 35.645775],
 	"title": {
 		"ja": "辰巳",
@@ -14192,7 +14463,8 @@
 		"fr": "Tatsumi",
 		"ko": "다쓰미",
 		"zh-Hans": "辰巳",
-		"zh-Hant": "辰巳"
+		"zh-Hant": "辰巳",
+		"ja-Hrkt": "たつみ"
 	},
 	"exit": [
 		"TokyoMetro.Tatsumi.1",
@@ -14204,6 +14476,7 @@
 }, {
 	"id": "TokyoMetro.Yurakucho.ShinKiba",
 	"railway": "TokyoMetro.Yurakucho",
+	"code": "Y24",
 	"coord": [139.826605, 35.64578],
 	"title": {
 		"ja": "新木場",
@@ -14211,7 +14484,8 @@
 		"fr": "Shin-kiba",
 		"ko": "신키바",
 		"zh-Hans": "新木场",
-		"zh-Hant": "新木場"
+		"zh-Hant": "新木場",
+		"ja-Hrkt": "しんきば"
 	},
 	"exit": [
 		"TokyoMetro.ShinKiba.1",
@@ -14220,6 +14494,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Shibuya",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z01",
 	"coord": [139.701035, 35.65945],
 	"title": {
 		"ja": "渋谷",
@@ -14227,7 +14502,8 @@
 		"fr": "Shibuya",
 		"ko": "시부야",
 		"zh-Hans": "涩谷",
-		"zh-Hant": "澀谷"
+		"zh-Hant": "澀谷",
+		"ja-Hrkt": "しぶや"
 	},
 	"exit": [
 		"TokyoMetro.Shibuya.A0",
@@ -14262,6 +14538,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.OmoteSando",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z02",
 	"coord": [139.712473, 35.665042],
 	"title": {
 		"ja": "表参道",
@@ -14269,12 +14546,14 @@
 		"fr": "Omote-sando",
 		"ko": "오모테산도",
 		"zh-Hans": "表参道",
-		"zh-Hant": "表參道"
+		"zh-Hant": "表參道",
+		"ja-Hrkt": "おもてさんどう"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Hanzomon.AoyamaItchome",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z03",
 	"coord": [139.724145, 35.67279],
 	"title": {
 		"ja": "青山一丁目",
@@ -14282,12 +14561,14 @@
 		"fr": "Aoyama-itchome",
 		"ko": "아오야마잇초메",
 		"zh-Hans": "青山一丁目",
-		"zh-Hant": "青山一丁目"
+		"zh-Hant": "青山一丁目",
+		"ja-Hrkt": "あおやまいっちょうめ"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Hanzomon.Nagatacho",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z04",
 	"coord": [139.738865, 35.678407],
 	"title": {
 		"ja": "永田町",
@@ -14295,7 +14576,8 @@
 		"fr": "Nagatacho",
 		"ko": "나가타초",
 		"zh-Hans": "永田町",
-		"zh-Hant": "永田町"
+		"zh-Hant": "永田町",
+		"ja-Hrkt": "ながたちょう"
 	},
 	"exit": [
 		"TokyoMetro.Nagatacho.7",
@@ -14307,6 +14589,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Hanzomon",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z05",
 	"coord": [139.741695, 35.68538],
 	"title": {
 		"ja": "半蔵門",
@@ -14314,7 +14597,8 @@
 		"fr": "Hanzomon",
 		"ko": "한조몬",
 		"zh-Hans": "半藏门",
-		"zh-Hant": "半藏門"
+		"zh-Hant": "半藏門",
+		"ja-Hrkt": "はんぞうもん"
 	},
 	"exit": [
 		"TokyoMetro.Hanzomon.1",
@@ -14331,6 +14615,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Kudanshita",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z06",
 	"coord": [139.751117, 35.695501],
 	"title": {
 		"ja": "九段下",
@@ -14338,7 +14623,8 @@
 		"fr": "Kudanshita",
 		"ko": "구단시타",
 		"zh-Hans": "九段下",
-		"zh-Hant": "九段下"
+		"zh-Hant": "九段下",
+		"ja-Hrkt": "くだんした"
 	},
 	"exit": [
 		"TokyoMetro.Kudanshita.1",
@@ -14354,6 +14640,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Jimbocho",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z07",
 	"coord": [139.75756, 35.696021],
 	"title": {
 		"ja": "神保町",
@@ -14361,12 +14648,14 @@
 		"fr": "Jimbocho",
 		"ko": "진보초",
 		"zh-Hans": "神保町",
-		"zh-Hant": "神保町"
+		"zh-Hant": "神保町",
+		"ja-Hrkt": "じんぼうちょう"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Hanzomon.Otemachi",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z08",
 	"coord": [139.764905, 35.686745],
 	"title": {
 		"ja": "大手町",
@@ -14375,7 +14664,8 @@
 		"ko": "오테마치",
 		"zh-Hans": "大手町",
 		"zh-Hant": "大手町",
-		"ja-Wiki": "大手町駅 (東京都)"
+		"ja-Wiki": "大手町駅 (東京都)",
+		"ja-Hrkt": "おおてまち"
 	},
 	"exit": [
 		"TokyoMetro.Otemachi.E1",
@@ -14385,6 +14675,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Mitsukoshimae",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z09",
 	"coord": [139.77308, 35.684928],
 	"title": {
 		"ja": "三越前",
@@ -14392,7 +14683,8 @@
 		"fr": "Mitsukoshimae",
 		"ko": "미쓰코시마에",
 		"zh-Hans": "三越前",
-		"zh-Hant": "三越前"
+		"zh-Hant": "三越前",
+		"ja-Hrkt": "みつこしまえ"
 	},
 	"exit": [
 		"TokyoMetro.Mitsukoshimae.B1",
@@ -14406,6 +14698,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Suitengumae",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z10",
 	"coord": [139.785171, 35.683],
 	"title": {
 		"ja": "水天宮前",
@@ -14413,7 +14706,8 @@
 		"fr": "Suitengumae",
 		"ko": "스이텐구마에",
 		"zh-Hans": "水天宮前",
-		"zh-Hant": "水天宮前"
+		"zh-Hant": "水天宮前",
+		"ja-Hrkt": "すいてんぐうまえ"
 	},
 	"exit": [
 		"TokyoMetro.Suitengumae.1a",
@@ -14430,6 +14724,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.KiyosumiShirakawa",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z11",
 	"coord": [139.799841, 35.682119],
 	"title": {
 		"ja": "清澄白河",
@@ -14437,7 +14732,8 @@
 		"fr": "Kiyosumi-shirakawa",
 		"ko": "기요스미시라카와",
 		"zh-Hans": "清澄白河",
-		"zh-Hant": "清澄白河"
+		"zh-Hant": "清澄白河",
+		"ja-Hrkt": "きよすみしらかわ"
 	},
 	"exit": [
 		"TokyoMetro.KiyosumiShirakawa.B1",
@@ -14447,6 +14743,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Sumiyoshi",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z12",
 	"coord": [139.815667, 35.688704],
 	"title": {
 		"ja": "住吉",
@@ -14455,7 +14752,8 @@
 		"ko": "수미요시",
 		"zh-Hans": "住吉",
 		"zh-Hant": "住吉",
-		"ja-Wiki": "住吉駅 (東京都)"
+		"ja-Wiki": "住吉駅 (東京都)",
+		"ja-Hrkt": "すみよし"
 	},
 	"exit": [
 		"TokyoMetro.Sumiyoshi.B1",
@@ -14465,6 +14763,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Kinshicho",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z13",
 	"coord": [139.814957, 35.697441],
 	"title": {
 		"ja": "錦糸町",
@@ -14472,7 +14771,8 @@
 		"fr": "Kinshicho",
 		"ko": "긴시초",
 		"zh-Hans": "锦糸町",
-		"zh-Hant": "錦糸町"
+		"zh-Hant": "錦糸町",
+		"ja-Hrkt": "きんしちょう"
 	},
 	"exit": [
 		"TokyoMetro.Kinshicho.1",
@@ -14487,6 +14787,7 @@
 }, {
 	"id": "TokyoMetro.Hanzomon.Oshiage",
 	"railway": "TokyoMetro.Hanzomon",
+	"code": "Z14",
 	"coord": [139.813735, 35.708467],
 	"title": {
 		"ja": "押上〈スカイツリー前〉",
@@ -14495,7 +14796,8 @@
 		"ko": "오시아게<스가이트리>",
 		"zh-Hans": "押上<晴空塔>",
 		"zh-Hant": "押上<晴空塔>",
-		"ja-Wiki": "押上駅"
+		"ja-Wiki": "押上駅",
+		"ja-Hrkt": "おしあげ<スカイツリーまえ>"
 	},
 	"exit": [
 		"TokyoMetro.Oshiage.B1",
@@ -14506,6 +14808,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Meguro",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N01",
 	"coord": [139.715456, 35.63297],
 	"title": {
 		"ja": "目黒",
@@ -14513,7 +14816,8 @@
 		"fr": "Meguro",
 		"ko": "메구로",
 		"zh-Hans": "目黒",
-		"zh-Hant": "目黑"
+		"zh-Hant": "目黑",
+		"ja-Hrkt": "めぐろ"
 	},
 	"exit": [
 		"TokyoMetro.Meguro.Main",
@@ -14524,6 +14828,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Shirokanedai",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N02",
 	"coord": [139.726007, 35.637851],
 	"title": {
 		"ja": "白金台",
@@ -14531,7 +14836,8 @@
 		"fr": "Shirokanedai",
 		"ko": "시로카네다이",
 		"zh-Hans": "白金台",
-		"zh-Hant": "白金台"
+		"zh-Hant": "白金台",
+		"ja-Hrkt": "しろかねだい"
 	},
 	"exit": [
 		"TokyoMetro.Shirokanedai.1",
@@ -14541,6 +14847,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.ShirokaneTakanawa",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N03",
 	"coord": [139.734344, 35.643283],
 	"title": {
 		"ja": "白金高輪",
@@ -14548,7 +14855,8 @@
 		"fr": "Shirokane-takanawa",
 		"ko": "시로카네타카나와",
 		"zh-Hans": "白金高轮",
-		"zh-Hant": "白金高輪"
+		"zh-Hant": "白金高輪",
+		"ja-Hrkt": "しろかねたかなわ"
 	},
 	"exit": [
 		"TokyoMetro.ShirokaneTakanawa.1",
@@ -14561,6 +14869,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.AzabuJuban",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N04",
 	"coord": [139.737045, 35.65481],
 	"title": {
 		"ja": "麻布十番",
@@ -14568,7 +14877,8 @@
 		"fr": "Azabu-juban",
 		"ko": "아자부주반",
 		"zh-Hans": "麻布十番",
-		"zh-Hant": "麻布十番"
+		"zh-Hant": "麻布十番",
+		"ja-Hrkt": "あざぶじゅうばん"
 	},
 	"exit": [
 		"TokyoMetro.AzabuJuban.1",
@@ -14581,6 +14891,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.RoppongiItchome",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N05",
 	"coord": [139.7389, 35.665075],
 	"title": {
 		"ja": "六本木一丁目",
@@ -14588,7 +14899,8 @@
 		"fr": "Roppongi-itchome",
 		"ko": "롯폰기잇초메",
 		"zh-Hans": "六本木一丁目",
-		"zh-Hant": "六本木一丁目"
+		"zh-Hant": "六本木一丁目",
+		"ja-Hrkt": "ろっぽんぎいっちょうめ"
 	},
 	"exit": [
 		"TokyoMetro.RoppongiItchome.1",
@@ -14601,6 +14913,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.TameikeSanno",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N06",
 	"coord": [139.741294, 35.673091],
 	"title": {
 		"ja": "溜池山王",
@@ -14608,7 +14921,8 @@
 		"fr": "Tameike-sanno",
 		"ko": "다메이케산노",
 		"zh-Hans": "溜池山王",
-		"zh-Hant": "溜池山王"
+		"zh-Hant": "溜池山王",
+		"ja-Hrkt": "ためいけさんのう"
 	},
 	"exit": [
 		"TokyoMetro.TameikeSanno.5",
@@ -14619,6 +14933,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Nagatacho",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N07",
 	"coord": [139.739288, 35.678338],
 	"title": {
 		"ja": "永田町",
@@ -14626,12 +14941,14 @@
 		"fr": "Nagatacho",
 		"ko": "나가타초",
 		"zh-Hans": "永田町",
-		"zh-Hant": "永田町"
+		"zh-Hant": "永田町",
+		"ja-Hrkt": "ながたちょう"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Namboku.Yotsuya",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N08",
 	"coord": [139.72968, 35.686082],
 	"title": {
 		"ja": "四ツ谷",
@@ -14639,7 +14956,8 @@
 		"fr": "Yotsuya",
 		"ko": "요쓰야",
 		"zh-Hans": "四谷",
-		"zh-Hant": "四谷"
+		"zh-Hant": "四谷",
+		"ja-Hrkt": "よつや"
 	},
 	"exit": [
 		"TokyoMetro.Yotsuya.1",
@@ -14650,6 +14968,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Ichigaya",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N09",
 	"coord": [139.736324, 35.692894],
 	"title": {
 		"ja": "市ケ谷",
@@ -14657,7 +14976,8 @@
 		"fr": "Ichigaya",
 		"ko": "이치가야",
 		"zh-Hans": "市谷",
-		"zh-Hant": "市谷"
+		"zh-Hant": "市谷",
+		"ja-Hrkt": "いちがや"
 	},
 	"exit": [
 		"TokyoMetro.Ichigaya.5",
@@ -14669,6 +14989,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Iidabashi",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N10",
 	"coord": [139.743716, 35.701532],
 	"title": {
 		"ja": "飯田橋",
@@ -14676,12 +14997,14 @@
 		"fr": "Iidabashi",
 		"ko": "이다바시",
 		"zh-Hans": "饭田桥",
-		"zh-Hant": "飯田橋"
+		"zh-Hant": "飯田橋",
+		"ja-Hrkt": "いいだばし"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Namboku.Korakuen",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N11",
 	"coord": [139.751786, 35.70839],
 	"title": {
 		"ja": "後楽園",
@@ -14689,7 +15012,8 @@
 		"fr": "Korakuen",
 		"ko": "고라쿠엔",
 		"zh-Hans": "後乐园",
-		"zh-Hant": "後樂園"
+		"zh-Hant": "後樂園",
+		"ja-Hrkt": "こうらくえん"
 	},
 	"exit": [
 		"TokyoMetro.Korakuen.5",
@@ -14700,6 +15024,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Todaimae",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N12",
 	"coord": [139.75788, 35.718014],
 	"title": {
 		"ja": "東大前",
@@ -14707,7 +15032,8 @@
 		"fr": "Todaimae",
 		"ko": "도다이마에",
 		"zh-Hans": "东大前",
-		"zh-Hant": "東大前"
+		"zh-Hant": "東大前",
+		"ja-Hrkt": "とうだいまえ"
 	},
 	"exit": [
 		"TokyoMetro.Todaimae.1",
@@ -14719,6 +15045,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.HonKomagome",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N13",
 	"coord": [139.753812, 35.724365],
 	"title": {
 		"ja": "本駒込",
@@ -14726,7 +15053,8 @@
 		"fr": "Hon-komagome",
 		"ko": "혼고마고메",
 		"zh-Hans": "本驹込",
-		"zh-Hant": "本駒込"
+		"zh-Hant": "本駒込",
+		"ja-Hrkt": "ほんこまごめ"
 	},
 	"exit": [
 		"TokyoMetro.HonKomagome.1",
@@ -14737,6 +15065,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Komagome",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N14",
 	"coord": [139.746909, 35.735913],
 	"title": {
 		"ja": "駒込",
@@ -14744,7 +15073,8 @@
 		"fr": "Komagome",
 		"ko": "고마고메",
 		"zh-Hans": "驹込",
-		"zh-Hant": "駒込"
+		"zh-Hant": "駒込",
+		"ja-Hrkt": "こまごめ"
 	},
 	"exit": [
 		"TokyoMetro.Komagome.1",
@@ -14758,6 +15088,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Nishigahara",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N15",
 	"coord": [139.74226, 35.745945],
 	"title": {
 		"ja": "西ケ原",
@@ -14765,7 +15096,8 @@
 		"fr": "Nishigahara",
 		"ko": "니시가하라",
 		"zh-Hans": "西原",
-		"zh-Hant": "西原"
+		"zh-Hant": "西原",
+		"ja-Hrkt": "にしがはら"
 	},
 	"exit": [
 		"TokyoMetro.Nishigahara.1",
@@ -14775,6 +15107,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Oji",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N16",
 	"coord": [139.737362, 35.75447],
 	"title": {
 		"ja": "王子",
@@ -14782,7 +15115,8 @@
 		"fr": "Oji",
 		"ko": "오지",
 		"zh-Hans": "王子",
-		"zh-Hant": "王子"
+		"zh-Hant": "王子",
+		"ja-Hrkt": "おうじ"
 	},
 	"exit": [
 		"TokyoMetro.Oji.1",
@@ -14796,6 +15130,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.OjiKamiya",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N17",
 	"coord": [139.735641, 35.765292],
 	"title": {
 		"ja": "王子神谷",
@@ -14803,7 +15138,8 @@
 		"fr": "Oji-kamiya",
 		"ko": "오지카미야",
 		"zh-Hans": "王子神谷",
-		"zh-Hant": "王子神谷"
+		"zh-Hant": "王子神谷",
+		"ja-Hrkt": "おうじかみや"
 	},
 	"exit": [
 		"TokyoMetro.OjiKamiya.1",
@@ -14815,6 +15151,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.Shimo",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N18",
 	"coord": [139.7325, 35.778025],
 	"title": {
 		"ja": "志茂",
@@ -14822,7 +15159,8 @@
 		"fr": "Shimo",
 		"ko": "시모",
 		"zh-Hans": "志茂",
-		"zh-Hant": "志茂"
+		"zh-Hant": "志茂",
+		"ja-Hrkt": "しも"
 	},
 	"exit": [
 		"TokyoMetro.Shimo.1",
@@ -14832,6 +15170,7 @@
 }, {
 	"id": "TokyoMetro.Namboku.AkabaneIwabuchi",
 	"railway": "TokyoMetro.Namboku",
+	"code": "N19",
 	"coord": [139.72211, 35.783355],
 	"title": {
 		"ja": "赤羽岩淵",
@@ -14839,7 +15178,8 @@
 		"fr": "Akabane-iwabuchi",
 		"ko": "아카바네이와부치",
 		"zh-Hans": "赤羽岩淵",
-		"zh-Hant": "赤羽岩淵"
+		"zh-Hant": "赤羽岩淵",
+		"ja-Hrkt": "あかばねいわぶち"
 	},
 	"exit": [
 		"TokyoMetro.AkabaneIwabuchi.1",
@@ -14851,6 +15191,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.Wakoshi",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F01",
 	"coord": [139.61286, 35.78835],
 	"title": {
 		"ja": "和光市",
@@ -14858,11 +15199,13 @@
 		"fr": "Wakoshi",
 		"ko": "와코시",
 		"zh-Hans": "和光市",
-		"zh-Hant": "和光市"
+		"zh-Hant": "和光市",
+		"ja-Hrkt": "わこうし"
 	}
 }, {
 	"id": "TokyoMetro.Fukutoshin.ChikatetsuNarimasu",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F02",
 	"coord": [139.63117, 35.77674],
 	"title": {
 		"ja": "地下鉄成増",
@@ -14870,12 +15213,14 @@
 		"fr": "Chikatetsu-narimasu",
 		"ko": "지카테쓰나리마스",
 		"zh-Hans": "地铁成増",
-		"zh-Hant": "地鐵成增"
+		"zh-Hant": "地鐵成增",
+		"ja-Hrkt": "ちかてつなります"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Fukutoshin.ChikatetsuAkatsuka",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F03",
 	"coord": [139.644001, 35.76998],
 	"title": {
 		"ja": "地下鉄赤塚",
@@ -14883,12 +15228,14 @@
 		"fr": "Chikatetsu-akatsuka",
 		"ko": "지카테쓰아카쓰카",
 		"zh-Hans": "地铁赤冢",
-		"zh-Hant": "地鐵赤塚"
+		"zh-Hant": "地鐵赤塚",
+		"ja-Hrkt": "ちかてつあかつか"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Fukutoshin.Heiwadai",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F04",
 	"coord": [139.6543, 35.757555],
 	"title": {
 		"ja": "平和台",
@@ -14897,7 +15244,8 @@
 		"ko": "헤이와다이",
 		"zh-Hans": "平和台",
 		"zh-Hant": "平和台",
-		"ja-Wiki": "平和台駅 (東京都)"
+		"ja-Wiki": "平和台駅 (東京都)",
+		"ja-Hrkt": "へいわだい"
 	},
 	"utitle": {
 		"ja": "平和台 (東京)",
@@ -14911,6 +15259,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.Hikawadai",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F05",
 	"coord": [139.66547, 35.74962],
 	"title": {
 		"ja": "氷川台",
@@ -14918,12 +15267,14 @@
 		"fr": "Hikawadai",
 		"ko": "히카와다이",
 		"zh-Hans": "冰川台",
-		"zh-Hant": "冰川台"
+		"zh-Hant": "冰川台",
+		"ja-Hrkt": "ひかわだい"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Fukutoshin.KotakeMukaihara",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F06",
 	"coord": [139.67952, 35.743395],
 	"title": {
 		"ja": "小竹向原",
@@ -14931,12 +15282,14 @@
 		"fr": "Kotake-mukaihara",
 		"ko": "고타케무카이하라",
 		"zh-Hans": "小竹向原",
-		"zh-Hant": "小竹向原"
+		"zh-Hant": "小竹向原",
+		"ja-Hrkt": "こたけむかいはら"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Fukutoshin.Senkawa",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F07",
 	"coord": [139.6894, 35.738175],
 	"title": {
 		"ja": "千川",
@@ -14944,12 +15297,14 @@
 		"fr": "Senkawa",
 		"ko": "센카와",
 		"zh-Hans": "千川",
-		"zh-Hant": "千川"
+		"zh-Hant": "千川",
+		"ja-Hrkt": "せんかわ"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Fukutoshin.Kanamecho",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F08",
 	"coord": [139.69848, 35.733215],
 	"title": {
 		"ja": "要町",
@@ -14957,12 +15312,14 @@
 		"fr": "Kanamecho",
 		"ko": "가나메초",
 		"zh-Hans": "要町",
-		"zh-Hant": "要町"
+		"zh-Hant": "要町",
+		"ja-Hrkt": "かなめちょう"
 	},
 	"altitude": -1
 }, {
 	"id": "TokyoMetro.Fukutoshin.Ikebukuro",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F09",
 	"coord": [139.7089439, 35.7311425],
 	"title": {
 		"ja": "池袋",
@@ -14970,7 +15327,8 @@
 		"fr": "Ikebukuro",
 		"ko": "이케부쿠로",
 		"zh-Hans": "池袋",
-		"zh-Hant": "池袋"
+		"zh-Hant": "池袋",
+		"ja-Hrkt": "いけぶくろ"
 	},
 	"exit": [
 		"TokyoMetro.Ikebukuro.C1a",
@@ -14988,6 +15346,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.Zoshigaya",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F10",
 	"coord": [139.714715, 35.7202],
 	"title": {
 		"ja": "雑司が谷",
@@ -14995,7 +15354,8 @@
 		"fr": "Zoshigaya",
 		"ko": "조시가야",
 		"zh-Hans": "杂司谷",
-		"zh-Hant": "雜司谷"
+		"zh-Hant": "雜司谷",
+		"ja-Hrkt": "ぞうしがや"
 	},
 	"exit": [
 		"TokyoMetro.Zoshigaya.1",
@@ -15007,6 +15367,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.NishiWaseda",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F11",
 	"coord": [139.70912, 35.707806],
 	"title": {
 		"ja": "西早稲田",
@@ -15014,7 +15375,8 @@
 		"fr": "Nishi-waseda",
 		"ko": "니시와세다",
 		"zh-Hans": "西早稻田",
-		"zh-Hant": "西早稻田"
+		"zh-Hant": "西早稻田",
+		"ja-Hrkt": "にしわせだ"
 	},
 	"exit": [
 		"TokyoMetro.NishiWaseda.1",
@@ -15026,6 +15388,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.HigashiShinjuku",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F12",
 	"coord": [139.707846, 35.699829],
 	"title": {
 		"ja": "東新宿",
@@ -15033,7 +15396,8 @@
 		"fr": "Higashi-shinjuku",
 		"ko": "히가시신주쿠",
 		"zh-Hans": "东新宿",
-		"zh-Hant": "東新宿"
+		"zh-Hant": "東新宿",
+		"ja-Hrkt": "ひがししんじゅく"
 	},
 	"exit": [
 		"TokyoMetro.HigashiShinjuku.B1",
@@ -15045,6 +15409,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.ShinjukuSanchome",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F13",
 	"coord": [139.704727, 35.690609],
 	"title": {
 		"ja": "新宿三丁目",
@@ -15052,7 +15417,8 @@
 		"fr": "Shinjuku-sanchome",
 		"ko": "신주쿠산초메",
 		"zh-Hans": "新宿三丁目",
-		"zh-Hant": "新宿三丁目"
+		"zh-Hant": "新宿三丁目",
+		"ja-Hrkt": "しんじゅくさんちょうめ"
 	},
 	"exit": [
 		"TokyoMetro.ShinjukuSanchome.E1",
@@ -15071,6 +15437,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.KitaSando",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F14",
 	"coord": [139.705469, 35.678503],
 	"title": {
 		"ja": "北参道",
@@ -15078,7 +15445,8 @@
 		"fr": "Kita-sando",
 		"ko": "기타산도",
 		"zh-Hans": "北参道",
-		"zh-Hant": "北參道"
+		"zh-Hant": "北參道",
+		"ja-Hrkt": "きたさんどう"
 	},
 	"exit": [
 		"TokyoMetro.KitaSando.1",
@@ -15089,6 +15457,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.MeijiJingumae",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F15",
 	"coord": [139.70524, 35.668205],
 	"title": {
 		"ja": "明治神宮前〈原宿〉",
@@ -15097,7 +15466,8 @@
 		"ko": "메이지진구마에<하라주쿠>",
 		"zh-Hans": "明治神宫前<原宿>",
 		"zh-Hant": "明治神宮前<原宿>",
-		"ja-Wiki": "明治神宮前駅"
+		"ja-Wiki": "明治神宮前駅",
+		"ja-Hrkt": "めいじじんぐうまえ<はらじゅく>"
 	},
 	"exit": [
 		"TokyoMetro.MeijiJingumae.7"
@@ -15106,6 +15476,7 @@
 }, {
 	"id": "TokyoMetro.Fukutoshin.Shibuya",
 	"railway": "TokyoMetro.Fukutoshin",
+	"code": "F16",
 	"coord": [139.70257, 35.659092],
 	"title": {
 		"ja": "渋谷",
@@ -15113,7 +15484,8 @@
 		"fr": "Shibuya",
 		"ko": "시부야",
 		"zh-Hans": "涩谷",
-		"zh-Hant": "澀谷"
+		"zh-Hant": "澀谷",
+		"ja-Hrkt": "しぶや"
 	},
 	"exit": [
 		"TokyoMetro.Shibuya.C1",
