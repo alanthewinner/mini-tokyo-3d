@@ -15,7 +15,7 @@ const MAX_STOPS = 8,
     PAGE_DURATION = 6000,
     NAME_DURATION = 3000,
     ARRIVING_THRESHOLD = 45000,
-    SWAP_DURATION = 600,
+    SWAP_DURATION = 1000,
     ANNOUNCE_PATH = 'assets/announce/',
     SOUND_STORAGE_KEY = 'mt3d:pids-sound';
 
